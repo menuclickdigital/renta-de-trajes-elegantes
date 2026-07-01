@@ -3,1344 +3,304 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    
-    <title>Renta de Trajes Elegantes</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Poppins:wght@300;400;500;600&display=swap&v=rentatrajesv2" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css?v=rentatrajesv2">
-
+    <title>FirenetX - Versión Digital</title>
     <style>
-        :root {
-            /* Colores por defecto cambiados a tonos de Renta de Trajes (Azul Marino, Negro y Oro) */
-            --primary: #1E3A8A;       
-            --secondary: #111111;     
-            --accent: #D4AF37;        
-            --bg-light: #F9FAFB;      
-            --text-dark: #1F2937;     
-            --text-muted: #6B7280;    
-            --white: #FFFFFF;
-            --success: #25D366;       
-            --shadow: 0 4px 20px rgba(0,0,0,0.08);
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            --logo-size: 65px;
-
-            /* Variables de ajuste dinámico de tamaño y corte para imágenes */
-            --catalog-img-height: 200px;
-            --catalog-img-fit: cover;
-            --slider-img-height: 280px;
-            --slider-img-fit: cover;
-            --promo-img-fit: cover;
-            --logo-fit: contain;
+        /* Estilos generales y fondo */
+        body {
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #050b14 0%, #0d1e3d 50%, #1a0f14 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
-        
-        body { 
-            background-color: var(--bg-light); 
-            color: var(--text-dark); 
-            overflow-x: hidden; 
-            scroll-behavior: smooth; 
-            opacity: 1; 
-            transition: opacity 0.5s ease-out; 
+        /* Contenedor principal estilo póster */
+        .poster-container {
+            width: 100%;
+            max-width: 500px;
+            background-color: #060d1a;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(0, 150, 255, 0.2);
+            border: 1px solid #1a365d;
+            position: relative;
         }
-        body.ready {
-            opacity: 1;
+
+        /* Encabezado (Logo FirenetX) */
+        .header {
+            text-align: center;
+            padding: 30px 20px 10px;
+            background: radial-gradient(circle, rgba(30,15,5,1) 0%, rgba(6,13,26,0) 70%);
         }
         
-        h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; font-weight: 700; }
+        .logo-box {
+            background: linear-gradient(to bottom, #5c3a21, #2c1a0e);
+            border: 2px solid #8c5a31;
+            border-radius: 50px;
+            padding: 10px 30px;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.8), inset 0 0 10px rgba(255,165,0,0.5);
+        }
 
-        /* --- NAVBAR --- */
-        header { background-color: var(--white); box-shadow: var(--shadow); position: sticky; top: 0; z-index: 1000; }
-        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; }
-        .logo-box { display: flex; align-items: center; gap: 10px; }
-        .logo-box img { height: var(--logo-size); width: auto; border-radius: 8px; object-fit: var(--logo-fit, contain); cursor: pointer; user-select: none; transition: transform 0.2s, height 0.3s ease; }
-        .logo-box img:active { transform: scale(0.95); }
-        .branch-selector { background: var(--bg-light); border: 1px solid #E5E7EB; padding: 6px 12px; border-radius: 8px; font-size: 13px; font-weight: 600; color: var(--text-dark); cursor: pointer; outline: none; }
-        .cart-icon-btn { position: relative; background: var(--primary); color: var(--white); border: none; padding: 10px 18px; border-radius: 50px; cursor: pointer; font-weight: 700; display: flex; align-items: center; gap: 8px; transition: var(--transition); }
-        .cart-icon-btn:hover { transform: scale(1.03); box-shadow: 0 4px 15px rgba(30, 58, 138, 0.4); }
-        .cart-count { background: var(--accent); color: var(--secondary); font-size: 12px; font-weight: 800; padding: 2px 8px; border-radius: 50%; }
+        .header h1 {
+            margin: 0;
+            font-size: 2.8rem;
+            color: #ffaa00;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 0px #000, 0 0 10px #ff4500;
+            font-weight: 900;
+        }
 
-        /* --- HERO SECTION --- */
-        .hero { background: linear-gradient(rgba(17, 17, 17, 0.7), rgba(17, 17, 17, 0.9)), url('https://images.unsplash.com/photo-1594938298603-c8148c4dae35?q=80&w=2000&auto=format&fit=crop') no-repeat center center/cover; color: var(--white); padding: 90px 20px; text-align: center; }
-        .hero h1 { font-size: 42px; margin-bottom: 12px; letter-spacing: -1px; text-transform: uppercase; color: var(--accent); }
-        .hero p { font-size: 16px; max-width: 650px; margin: 0 auto 25px auto; opacity: 0.9; line-height: 1.6; }
-        .branch-indicators { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 20px; }
-        .badge-info { background: rgba(255, 255, 255, 0.15); padding: 6px 14px; border-radius: 50px; font-size: 12px; backdrop-filter: blur(5px); display: flex; align-items: center; gap: 6px; }
+        .header h1 span {
+            color: #ff4500;
+            font-style: italic;
+            font-size: 3.2rem;
+        }
 
-        /* --- PROMO BANNER --- */
-        .promo-section { max-width: 1200px; margin: -30px auto 40px auto; padding: 0 20px; position: relative; z-index: 10; }
-        .promo-container { background: var(--white); border-radius: 16px; box-shadow: var(--shadow); display: grid; grid-template-columns: 1fr; overflow: hidden; border-left: 6px solid var(--primary); }
-        @media(min-width: 768px) { .promo-container { grid-template-columns: 1.2fr 0.8fr; } }
-        .promo-text { padding: 35px; display: flex; flex-direction: column; justify-content: center; }
-        .promo-tag { color: var(--primary); font-weight: 800; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
-        .promo-title { font-size: 28px; color: var(--secondary); margin-bottom: 10px; }
-        .promo-price { font-size: 34px; color: var(--primary); font-weight: 800; margin-bottom: 10px; }
-        .promo-img { background-image: url('https://images.unsplash.com/photo-1598808503744-44d883d0a13b?q=80&w=800&auto=format&fit=crop'); background-repeat: no-repeat; background-position: center center; background-size: var(--promo-img-fit, cover); min-height: 200px; }
+        .header p {
+            margin: 5px 0 0;
+            color: #ffffff;
+            font-size: 1.1rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
 
-        /* --- SLIDER Y MENÚ --- */
-        .slider-section, .menu-section, .location-map-section, .flyer-showcase, .digital-menu-promo { max-width: 1200px; margin: 0 auto 50px auto; padding: 0 20px; position: relative; }
-        .section-title { text-align: center; margin-bottom: 30px; }
-        .section-title h2 { font-size: 30px; color: var(--secondary); text-transform: uppercase; }
-        .section-title::after { content: ''; width: 50px; height: 4px; background: var(--primary); display: block; margin: 8px auto 0 auto; border-radius: 2px; }
+        /* Sección de Estadísticas (Cajas azules) */
+        .stats-container {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            gap: 10px;
+        }
 
-        .slider-container { overflow: hidden; position: relative; width: 100%; padding: 5px 0; }
-        .slider-track { display: flex; transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); gap: 20px; }
-        .slide-item { min-width: 100%; position: relative; user-select: none; box-sizing: border-box; }
-        @media(min-width: 768px) { .slide-item { min-width: calc(33.333% - 13.333px); } }
-        .slide-item img { width: 100%; height: var(--slider-img-height, 280px); object-fit: var(--slider-img-fit, cover); border-radius: 18px; box-shadow: 0 6px 15px rgba(0,0,0,0.06); transition: var(--transition); }
-        .slide-caption { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0, 0, 0, 0.85)); color: var(--white); padding: 20px 15px 12px 15px; border-bottom-left-radius: 18px; border-bottom-right-radius: 18px; font-size: 15px; font-weight: 600; text-transform: uppercase; }
-        .slider-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: var(--white); color: var(--secondary); border: none; width: 45px; height: 45px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.15); z-index: 20; transition: var(--transition); }
-        .slider-arrow:hover { background: var(--primary); color: var(--white); }
-        .arrow-left { left: 5px; } .arrow-right { right: 5px; }
-        .slider-dots { display: flex; justify-content: center; gap: 8px; margin-top: 20px; }
-        .slider-dot { width: 10px; height: 10px; background: #E5E7EB; border-radius: 50%; cursor: pointer; }
-        .slider-dot.active { background: var(--primary); width: 28px; border-radius: 20px; }
+        .stat-box {
+            flex: 1;
+            background: linear-gradient(to bottom, rgba(5,20,50,0.9), rgba(10,30,70,0.9));
+            border: 1px solid #2962ff;
+            border-radius: 10px;
+            padding: 15px 5px;
+            text-align: center;
+            box-shadow: 0 0 15px rgba(41, 98, 255, 0.3);
+        }
 
-        .tabs-container { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 12px; margin-bottom: 35px; scrollbar-width: none; }
-        .tabs-container::-webkit-scrollbar { display: none; }
-        .tab-btn { background: var(--white); color: var(--text-dark); border: 1px solid #E5E7EB; padding: 10px 22px; border-radius: 50px; cursor: pointer; font-weight: 600; font-size: 14px; white-space: nowrap; transition: var(--transition); }
-        .tab-btn.active, .tab-btn:hover { background: var(--secondary); color: var(--white); border-color: var(--secondary); }
+        .stat-icon {
+            font-size: 2rem;
+            margin-bottom: 5px;
+        }
 
-        .menu-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
-        @media(min-width: 640px) { .menu-grid { grid-template-columns: 1fr 1fr; } }
-        @media(min-width: 1024px) { .menu-grid { grid-template-columns: 1fr 1fr 1fr; } }
-        .menu-item { background: var(--white); border-radius: 14px; box-shadow: var(--shadow); padding: 22px; display: flex; flex-direction: column; justify-content: space-between; transition: var(--transition); border: 1px solid rgba(0,0,0,0.02); }
-        .menu-item:hover { transform: translateY(-4px); box-shadow: 0 10px 25px rgba(0,0,0,0.12); }
-        .item-image { width: 100%; height: var(--catalog-img-height, 200px); object-fit: var(--catalog-img-fit, cover); border-radius: 10px; margin-bottom: 15px; border: 1px solid rgba(0,0,0,0.05); }
-        .item-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 8px; }
-        .item-title { font-size: 18px; color: var(--secondary); font-weight: 700; }
-        .item-price { font-size: 18px; color: var(--primary); font-weight: 700; }
-        .item-desc { font-size: 13px; color: var(--text-muted); margin-bottom: 20px; line-height: 1.5; }
-        .add-to-cart-btn { background: var(--bg-light); color: var(--secondary); border: 1px solid #E5E7EB; width: 100%; padding: 10px; border-radius: 10px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: var(--transition); }
-        .add-to-cart-btn:hover { background: var(--primary); color: var(--white); border-color: var(--primary); }
+        .stat-number {
+            color: #ffb300;
+            font-size: 1.8rem;
+            font-weight: 900;
+            margin: 5px 0;
+            text-shadow: 1px 1px 2px #000;
+        }
 
-        /* Mapa y Flyer */
-        .map-wrapper-container { display: grid; grid-template-columns: 1fr; gap: 25px; background: var(--white); padding: 25px; border-radius: 16px; box-shadow: var(--shadow); }
-        @media(min-width: 768px) { .map-wrapper-container { grid-template-columns: 1fr 1.3fr; align-items: center; } }
-        .map-info-panel h3 { font-size: 22px; color: var(--secondary); margin-bottom: 15px; text-transform: uppercase; border-left: 4px solid var(--primary); padding-left: 10px; }
-        .map-info-panel p { font-size: 14px; color: var(--text-dark); margin-bottom: 12px; display: flex; align-items: center; gap: 12px; line-height: 1.5; }
-        .map-info-panel i { color: var(--primary); font-size: 16px; width: 20px; text-align: center; }
-        .map-frame-box { width: 100%; overflow: hidden; border-radius: 12px; box-shadow: var(--shadow); border: 1px solid #E5E7EB; height: 320px; }
+        .stat-label {
+            color: #ffffff;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            line-height: 1.2;
+        }
 
-        /* Promo Digital Menu */
-        .digital-menu-promo { background: linear-gradient(135deg, var(--secondary) 0%, #0A0A0A 100%); border-radius: 24px; color: var(--white); padding: 50px 20px; text-align: center; border: 1px solid rgba(255,255,255,0.05); }
-        .promo-badge-top { display: inline-block; background: var(--accent); color: var(--secondary); font-weight: 800; font-size: 11px; padding: 5px 16px; border-radius: 50px; text-transform: uppercase; margin-bottom: 15px; }
-        .digital-menu-promo h2 { font-size: 34px; color: var(--primary); margin-bottom: 6px; text-transform: uppercase; }
-        .promo-subtitle-top { color: #D1D5DB; font-weight: 500; font-size: 15px; margin-bottom: 45px; }
-        .digital-cta-bar { background: var(--primary); border-radius: 16px; padding: 22px 30px; display: flex; flex-direction: column; align-items: center; gap: 18px; }
-        @media(min-width: 768px) { .digital-cta-bar { flex-direction: row; justify-content: center; text-align: center; } }
-        .cta-left { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; justify-content: center; color: var(--white); }
-        .cta-left span { font-weight: 800; font-size: 19px; text-transform: uppercase; }
-        .cta-phone { background: var(--secondary); color: var(--white); padding: 10px 24px; border-radius: 50px; font-weight: 800; font-size: 20px; text-decoration: none; display: flex; align-items: center; gap: 10px; transition: var(--transition); }
+        /* Sección de la TV / Ambientación */
+        .tv-section {
+            padding: 10px 20px;
+            position: relative;
+        }
 
-        /* Footer */
-        footer { background-color: var(--secondary); color: var(--white); padding: 60px 20px 25px 20px; }
-        .footer-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 40px; border-bottom: 1px solid #374151; padding-bottom: 40px; }
-        @media(min-width: 768px) { .footer-container { grid-template-columns: 1fr 1fr 1fr; } }
-        .footer-about img { height: 65px; margin-bottom: 15px; border-radius: 6px; background: white; padding: 5px; }
-        .footer-links h4, .footer-contact h4 { font-size: 16px; margin-bottom: 20px; color: var(--accent); text-transform: uppercase; }
-        .footer-contact p { font-size: 14px; color: #9CA3AF; margin-bottom: 14px; display: flex; align-items: flex-start; gap: 10px; line-height: 1.5; }
-        .footer-contact i { margin-top: 3px; color: var(--primary); }
-        .copyright { text-align: center; padding-top: 25px; font-size: 13px; color: #9CA3AF; }
+        .tv-screen {
+            background: #000;
+            border: 3px solid #333;
+            border-radius: 5px;
+            height: 200px;
+            display: flex;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 150, 255, 0.4);
+        }
 
-        /* Cart Modal */
-        .cart-modal { position: fixed; top: 0; right: -100%; width: 100%; max-width: 420px; height: 100%; background: var(--white); box-shadow: -10px 0 30px rgba(0,0,0,0.15); z-index: 2000; display: flex; flex-direction: column; transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-        .cart-modal.open { right: 0; }
-        .cart-header { background: var(--secondary); color: var(--primary); padding: 24px 20px; display: flex; justify-content: space-between; align-items: center; }
-        .close-cart { background: none; border: none; color: var(--primary); font-size: 26px; cursor: pointer; }
-        .cart-body { padding: 20px; overflow-y: auto; flex-grow: 1; }
-        .cart-empty-msg { text-align: center; color: var(--text-muted); margin-top: 50px; font-size: 14px; }
-        .cart-item-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #F3F4F6; }
-        .cart-item-info h5 { font-size: 14px; color: var(--secondary); font-weight: 600; }
-        .cart-item-info span { font-size: 13px; color: var(--primary); font-weight: 700; }
-        .cart-checkout-details { padding: 0 20px 15px 20px; overflow-y: auto; max-height: 55%; border-top: 2px dashed #E5E7EB; background: #FAFAFA; }
-        .checkout-form h4 { font-size: 15px; color: var(--secondary); margin: 15px 0 10px 0; }
-        .form-group { margin-bottom: 10px; }
-        .form-group label { display: block; font-size: 12px; font-weight: 600; margin-bottom: 4px; color: var(--text-dark); }
-        .radio-tile-group { display: flex; gap: 15px; margin-bottom: 10px; }
-        .radio-label { font-size: 13px; font-weight: 500; display: flex; align-items: center; gap: 5px; cursor: pointer; }
-        .form-input { width: 100%; padding: 10px; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 13px; outline: none; transition: var(--transition); }
-        textarea.form-input { resize: vertical; min-height: 60px; }
-        .form-input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1); }
-        .qr-cart-container { text-align: center; margin-top: 15px; padding: 12px; background: var(--white); border-radius: 12px; border: 1px solid #E5E7EB; box-shadow: inset 0 2px 4px rgba(0,0,0,0.02); }
-        .qr-cart-container p { font-size: 11px; font-weight: 700; color: var(--text-muted); margin-bottom: 6px; }
-        .qr-cart-container img { width: 110px; height: 110px; border: 3px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.08); border-radius: 4px; cursor: pointer; }
-        .cart-footer { padding: 24px 20px; background: var(--bg-light); border-top: 1px solid #E5E7EB; }
-        .cart-total-box { display: flex; justify-content: space-between; font-weight: 700; font-size: 19px; margin-bottom: 15px; color: var(--secondary); }
-        .checkout-btn { background: var(--success); color: var(--white); width: 100%; padding: 14px; border: none; border-radius: 12px; font-weight: 700; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: var(--transition); }
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 1500; display: none; backdrop-filter: blur(2px); }
-        .modal-overlay.show { display: block; }
+        .tv-menu {
+            background: rgba(0,0,0,0.7);
+            color: white;
+            width: 30%;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            font-size: 0.7rem;
+            border-right: 1px solid rgba(255,255,255,0.2);
+        }
 
-        /* --- EXCLUSIVE ADMIN INTERFACE MODAL --- */
-        .admin-panel-modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.9); width: 95%; max-width: 700px; max-height: 90vh; background: #ffffff; border-radius: 18px; box-shadow: 0 20px 50px rgba(0,0,0,0.3); z-index: 3000; display: none; flex-direction: column; overflow: hidden; border: 1px solid #E5E7EB; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-        .admin-panel-modal.show { display: flex; transform: translate(-50%, -50%) scale(1); }
+        .tv-menu strong {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .tv-menu p {
+            margin: 5px 0;
+            padding: 5px;
+            border-radius: 3px;
+        }
         
-        .admin-panel-modal.fullscreen { width: 100vw !important; height: 100vh !important; max-width: 100vw !important; max-height: 100vh !important; border-radius: 0 !important; border: none !important; }
+        .tv-menu p.active {
+            background: rgba(255,255,255,0.2);
+        }
 
-        .admin-header { background: var(--secondary); color: var(--primary); padding: 18px 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
-        .admin-body { padding: 24px; overflow-y: auto; background: #fdfdfd; flex-grow: 1; outline: none; }
-        .admin-tab-section { border-bottom: 2px solid #F3F4F6; margin-bottom: 20px; padding-bottom: 10px; display: flex; gap: 10px; overflow-x: auto; white-space: nowrap; scrollbar-width: none; }
-        .admin-tab-section::-webkit-scrollbar { display: none; }
-        .admin-tab-link { font-size: 13px; font-weight: 700; color: var(--text-muted); cursor: pointer; background: none; border: none; padding: 8px 14px; border-radius: 6px; transition: var(--transition); }
-        .admin-tab-link.active { color: var(--primary); background: rgba(30, 58, 138, 0.1); }
-        .admin-form-box h4 { font-size: 16px; color: var(--secondary); margin-bottom: 15px; border-left: 4px solid var(--accent); padding-left: 8px; }
-        .admin-list-scroll { max-height: 200px; overflow-y: auto; border: 1px solid #E5E7EB; border-radius: 10px; padding: 10px; background: #fff; margin-top: 15px; }
-        .admin-list-item { display: flex; justify-content: space-between; align-items: center; padding: 10px; border-bottom: 1px solid #F3F4F6; font-size: 13.5px; }
-        .admin-list-item:last-child { border-bottom: none; }
-        .admin-list-actions { display: flex; gap: 8px; }
-        .admin-action-btn { background: none; border: none; cursor: pointer; padding: 4px 8px; border-radius: 4px; font-size: 13px; }
-        .admin-btn-save { background: var(--secondary); color: var(--white); padding: 12px 20px; border-radius: 8px; border: none; font-weight: 700; cursor: pointer; width: 100%; margin-top: 15px; }
-        .admin-btn-cancel, .admin-btn-delete { background: #EF4444; color: white; padding: 8px 14px; border-radius: 6px; border: none; font-weight: 600; cursor: pointer; font-size: 12px; margin-top: 8px; width: 100%; }
-        .color-picker-group { display: flex; align-items: center; justify-content: space-between; padding: 10px; background: var(--bg-light); border-radius: 8px; margin-bottom: 10px; border: 1px solid #E5E7EB;}
-        .color-picker-group input[type="color"] { width: 40px; height: 40px; border: none; border-radius: 50%; cursor: pointer; background: none; }
-        .file-upload-wrapper { margin-bottom: 15px; }
-        .file-upload-wrapper input[type="text"] { display: block; width: 100%; padding: 10px; font-size: 13px; border: 1px dashed var(--primary); border-radius: 8px; background: rgba(30, 58, 138, 0.05); outline: none; transition: var(--transition); color: var(--text-dark); }
-        .file-upload-wrapper input[type="text"]:focus { border-style: solid; box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1); }
+        .tv-content {
+            width: 70%;
+            background: linear-gradient(45deg, #ff4500, #2962ff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            font-style: italic;
+            text-align: center;
+            padding: 10px;
+        }
 
-        /* --- CHATBOT WIDGET CSS --- */
-        .chat-widget { position: fixed; bottom: 25px; right: 25px; z-index: 9999; }
-        .chat-btn { background: var(--primary); color: var(--white); width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; cursor: pointer; box-shadow: 0 8px 20px rgba(0,0,0,0.2); border: none; transition: var(--transition); }
-        .chat-btn:hover { transform: scale(1.08); background: var(--secondary); color: var(--primary); }
-        .chat-window { position: absolute; bottom: 80px; right: 0; width: 340px; height: 480px; background: var(--white); border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.25); display: none; flex-direction: column; overflow: hidden; border: 1px solid #E5E7EB; transition: var(--transition); }
-        .chat-window.open { display: flex; animation: slideUp 0.3s ease; }
-        .chat-header { background: var(--secondary); color: var(--white); padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; font-weight: 700; font-size: 15px; }
-        .chat-close { background: none; border: none; color: var(--white); font-size: 24px; cursor: pointer; }
-        .chat-messages { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; background: var(--bg-light); font-size: 13.5px; }
-        .chat-msg { max-width: 85%; padding: 10px 14px; border-radius: 12px; line-height: 1.4; word-wrap: break-word; }
-        .chat-msg.bot { background: var(--white); color: var(--text-dark); align-self: flex-start; border: 1px solid #E5E7EB; border-bottom-left-radius: 2px; }
-        .chat-msg.user { background: var(--primary); color: var(--white); align-self: flex-end; border-bottom-right-radius: 2px; font-weight: 600; }
-        .chat-input-area { padding: 12px; background: var(--white); border-top: 1px solid #E5E7EB; display: flex; gap: 8px; }
-        .chat-input { flex: 1; padding: 12px 15px; border: 1px solid #D1D5DB; border-radius: 50px; outline: none; font-size: 13.5px; transition: 0.2s; }
-        .chat-input:focus { border-color: var(--primary); }
-        .chat-send { background: var(--secondary); color: var(--white); width: 45px; height: 45px; border-radius: 50%; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; transition: 0.2s; }
-        .chat-send:hover { transform: scale(1.05); }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        /* Título de Dispositivos */
+        .devices-title {
+            text-align: center;
+            color: #ffffff;
+            font-size: 1.1rem;
+            margin: 25px 20px 15px;
+            font-weight: 800;
+        }
 
-        @media (max-width: 768px) { .hero h1 { font-size: 28px; } .hero p { font-size: 14px; } .promo-title { font-size: 22px; } .promo-price { font-size: 26px; } .digital-menu-promo h2 { font-size: 24px; } }
-        @media (max-width: 576px) { .nav-container { flex-wrap: wrap; justify-content: center; gap: 12px; padding: 10px; } .logo-box { width: 100%; justify-content: space-between; } .cart-icon-btn { width: 100%; justify-content: center; } .promo-text { padding: 20px; } .digital-cta-bar { padding: 15px; } .chat-window { width: calc(100vw - 40px); right: -10px; height: 60vh; } }
+        /* Cuadrícula de Dispositivos */
+        .devices-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            padding: 0 20px 20px;
+        }
+
+        .device-card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 12px 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 800;
+            font-size: 1.1rem;
+            min-width: 110px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        /* Colores de marcas específicas */
+        .roku { color: #662D91; font-size: 1.4rem; }
+        .firetv { color: #FF9900; }
+        .androidtv { color: #000000; }
+        .androidtv::before { content: "🤖 "; color: #3DDC84; }
+        .googletv { color: #5f6368; font-size: 0.9rem;}
+        .lg { color: #a50034; }
+        .samsung { color: #1428A0; display: flex; flex-direction: column; line-height: 1; font-size: 0.9rem;}
+        .hisense { color: #00A99D; display: flex; flex-direction: column; line-height: 1; font-size: 1rem; width: 100%; max-width: 150px;}
+
+        /* Pie de página (Precio) */
+        .footer-banner {
+            background-color: #ffcc00;
+            color: #000000;
+            text-align: center;
+            padding: 15px;
+            font-size: 1.2rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            box-shadow: 0 -5px 15px rgba(255, 204, 0, 0.2);
+            position: relative;
+        }
+        
+        .cursor-icon {
+            position: absolute;
+            right: 20px;
+            bottom: 30px;
+            font-size: 2rem;
+            filter: drop-shadow(2px 4px 6px black);
+        }
+
     </style>
-    
-    <script>
-        (function() {
-            try {
-                let cachedConfig = JSON.parse(localStorage.getItem('rentatrajesv2_config'));
-                if (cachedConfig && cachedConfig.colors) {
-                    document.documentElement.style.setProperty('--primary', cachedConfig.colors.primary);
-                    document.documentElement.style.setProperty('--secondary', cachedConfig.colors.secondary);
-                    document.documentElement.style.setProperty('--accent', cachedConfig.colors.accent);
-                    document.documentElement.style.setProperty('--logo-size', (cachedConfig.layout?.logoSize || 65) + 'px');
-                    
-                    if (cachedConfig.imageSizes) {
-                        document.documentElement.style.setProperty('--catalog-img-fit', cachedConfig.imageSizes.catalogFit || 'cover');
-                        document.documentElement.style.setProperty('--catalog-img-height', (cachedConfig.imageSizes.catalogHeight || 200) + 'px');
-                        document.documentElement.style.setProperty('--slider-img-fit', cachedConfig.imageSizes.sliderFit || 'cover');
-                        document.documentElement.style.setProperty('--slider-img-height', (cachedConfig.imageSizes.sliderHeight || 280) + 'px');
-                        document.documentElement.style.setProperty('--promo-img-fit', cachedConfig.imageSizes.promoFit || 'cover');
-                        document.documentElement.style.setProperty('--logo-fit', cachedConfig.imageSizes.logoFit || 'contain');
-                    }
-                }
-            } catch (e) {}
-        })();
-    </script>
 </head>
 <body>
 
-    <header>
-        <div class="nav-container">
+    <div class="poster-container">
+        
+        <div class="header">
             <div class="logo-box">
-                <img id="mainLogo" src="" alt="renta de trajes" onclick="clickLogoCounter()">
-                <select class="branch-selector" id="branchSelect" onchange="updateBranchInfo()"></select>
+                <h1>FIRENET<span>X</span></h1>
             </div>
-            <nav style="width: 100%; max-width: max-content;">
-                <button class="cart-icon-btn" onclick="toggleCart()">
-                    <i class="fa-solid fa-user-tie"></i> Catálogo
-                    <span class="cart-count" id="cartCount">0</span>
-                </button>
-            </nav>
+            <p>Versión Digital</p>
         </div>
-    </header>
 
-    <section class="hero" id="heroSection" style="text-align: center;">
-        <h1 id="domHeroTitle">Cargando...</h1>
-        <p id="domHeroDesc">Espere un momento por favor.</p>
-        <div class="branch-indicators">
-            <span class="badge-info"><i class="fa-solid fa-location-dot"></i> Sucursales Disponibles</span>
-            <span class="badge-info"><i class="fa-solid fa-star"></i> Alta Costura</span>
-        </div>
-    </section>
-
-    <div class="promo-section">
-        <div class="promo-container">
-            <div class="promo-text">
-                <span class="promo-tag" id="domPromoTag"><i class="fa-solid fa-star"></i> Promo del Mes</span>
-                <h3 class="promo-title" id="domPromoTitle">...</h3>
-                <div class="promo-price" id="domPromoPrice">...</div>
-                <p style="font-size: 13px; color: var(--text-muted);" id="domPromoDesc">...</p>
+        <div class="stats-container">
+            <div class="stat-box">
+                <div class="stat-icon">📡</div>
+                <div class="stat-number">4,100</div>
+                <div class="stat-label">Canales<br>en vivo</div>
             </div>
-            <div class="promo-img" id="domPromoImg"></div>
+            <div class="stat-box">
+                <div class="stat-icon">🎬</div>
+                <div class="stat-number">52,000</div>
+                <div class="stat-label">Películas</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-icon">📺</div>
+                <div class="stat-number">5,500</div>
+                <div class="stat-label">Series</div>
+            </div>
         </div>
+
+        <div class="tv-section">
+            <div class="tv-screen">
+                <div class="tv-menu">
+                    <strong>75"</strong>
+                    <p class="active">📺 TV EN VIVO</p>
+                    <p>🎬 PELÍCULAS</p>
+                    <p>🍿 SERIES</p>
+                </div>
+                <div class="tv-content">
+                    [Escena de Acción/Película]
+                </div>
+            </div>
+        </div>
+
+        <h2 class="devices-title">DISFRUTA EN TODOS TUS<br>DISPOSITIVOS FAVORITOS:</h2>
+
+        <div class="devices-grid">
+            <div class="device-card roku">Roku</div>
+            <div class="device-card firetv">fire tv</div>
+            <div class="device-card androidtv">androidtv</div>
+            <div class="device-card googletv">
+                <span style="color:#4285F4">G</span><span style="color:#EA4335">o</span><span style="color:#FBBC05">o</span><span style="color:#4285F4">g</span><span style="color:#34A853">l</span><span style="color:#EA4335">e</span> TV
+            </div>
+            <div class="device-card lg">
+                LG <span style="color:#666; font-weight:normal; margin-left:5px;">webOS</span>
+            </div>
+            <div class="device-card samsung">
+                <span>SAMSUNG</span>
+                <span style="color:#000; font-weight:normal;">Tizen</span>
+            </div>
+            <div class="device-card hisense">
+                <span>Hisense</span>
+                <span style="color:#666; font-weight:normal;">VIDAA</span>
+            </div>
+        </div>
+
+        <div class="footer-banner">
+            PAGO MENSUAL: Recarga por Mes
+            <div class="cursor-icon">🖱️</div>
+        </div>
+
     </div>
 
-    <section class="slider-section">
-        <div class="section-title"><h2 id="domSliderTitle">Cargando Colecciones...</h2></div>
-        <div class="slider-container">
-            <button class="slider-arrow arrow-left" onclick="moveSlider(-1)"><i class="fa-solid fa-chevron-left"></i></button>
-            <div class="slider-track" id="sliderTrack"></div>
-            <button class="slider-arrow arrow-right" onclick="moveSlider(1)"><i class="fa-solid fa-chevron-right"></i></button>
-        </div>
-        <div class="slider-dots" id="sliderDots"></div>
-    </section>
-
-    <section class="menu-section">
-        <div class="section-title"><h2 id="domMenuTitle">Catálogo Oficial</h2></div>
-        <div class="tabs-container" id="categoryTabsContainer"></div>
-        <div class="menu-grid" id="menuGrid"></div>
-    </section>
-
-    <section class="location-map-section" id="ubicacion">
-        <div class="section-title"><h2 id="domMapTitle">Nuestra Ubicación</h2></div>
-        <div class="map-wrapper-container">
-            <div class="map-info-panel">
-                <h3 id="mapBranchTitle">Cargando Sucursal...</h3>
-                <p id="mapBranchAddress"><i class="fa-solid fa-location-dot"></i> ...</p>
-                <p id="mapBranchHours"><i class="fa-solid fa-clock"></i> ...</p>
-                <p id="mapBranchPhone"><i class="fa-brands fa-whatsapp"></i> ...</p>
-                <div style="margin-top: 15px;">
-                    <span class="badge-info" style="background: var(--secondary); color: var(--white); display: inline-flex; gap:8px;"><i class="fa-solid fa-shirt" style="color:var(--accent);"></i> ¡Atención Personalizada y Ajuste a la Medida!</span>
-                </div>
-            </div>
-            <div class="map-frame-box">
-                <iframe id="branchMapIframe" src="" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-            </div>
-        </div>
-    </section>
-
-    <section class="digital-menu-promo">
-        <div class="promo-badge-top" id="domPromoDigitalBadge">...</div>
-        <h2 id="domPromoDigitalTitle">...</h2>
-        <p class="promo-subtitle-top" id="domPromoDigitalSub">...</p>
-        <div class="digital-cta-bar">
-            <div class="cta-left">
-                <span id="domPromoDigitalCta">...</span>
-                <a href="#" target="_blank" class="cta-phone" id="domWaCta"><i class="fa-brands fa-whatsapp"></i> <span id="domWaCtaText">WhatsApp</span></a>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="footer-container">
-            <div class="footer-about">
-                <img id="footerLogo" src="" alt="Logo Footer">
-                <p id="domFooterAbout" style="font-size: 14px; color: #9CA3AF; line-height: 1.6;">...</p>
-            </div>
-            <div class="footer-contact">
-                <h4>Ubicaciones y Horarios</h4>
-                <div id="branchDetails"></div>
-            </div>
-            <div class="footer-qr" style="display: flex; flex-direction: column; gap: 10px;">
-                <h4 style="font-size: 16px; margin-bottom: 5px; color: var(--accent); text-transform: uppercase;">Compartir Catálogo</h4>
-                <div style="background: white; padding: 10px; border-radius: 12px; display: inline-block; width: max-content;">
-                    <img id="topQrCode" src="" alt="Código QR" onclick="clickQrCounter()" style="width: 100px; height: 100px; cursor: pointer; display: block;">
-                </div>
-                <p style="font-size: 12px; color: #9CA3AF;">Toca el código para opciones</p>
-            </div>
-        </div>
-        <div class="copyright" id="domFooterCopy">...</div>
-    </footer>
-
-    <div class="chat-widget">
-        <button class="chat-btn" onclick="toggleChatWindow()"><i class="fa-solid fa-user-tie"></i></button>
-        <div class="chat-window" id="chatbotWindow">
-            <div class="chat-header">
-                <span><i class="fa-solid fa-robot"></i> Asistente de Renta de Trajes</span>
-                <button class="chat-close" onclick="toggleChatWindow()">×</button>
-            </div>
-            <div class="chat-messages" id="chatMsgBox">
-                <div class="chat-msg bot">¡Hola! Soy la IA de renta de trajes. Conozco todo el catálogo, promociones y sucursales disponibles. ¿Puedo ayudarte a elegir el outfit ideal para tu evento o apartar una prenda? 👔</div>
-            </div>
-            <div class="chat-input-area">
-                <input type="text" id="chatInputBox" class="chat-input" placeholder="Ej. Quiero rentar un esmoquin negro..." onkeypress="handleBotKeyPress(event)">
-                <button class="chat-send" onclick="sendToBot()"><i class="fa-solid fa-paper-plane"></i></button>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal-overlay" id="cartOverlay" onclick="toggleCart()"></div>
-    <div class="cart-modal" id="cartModal">
-        <div class="cart-header">
-            <h3><i class="fa-solid fa-receipt"></i> Tu Solicitud</h3>
-            <button class="close-cart" onclick="toggleCart()">×</button>
-        </div>
-        <div class="cart-body" id="cartBody"><div class="cart-empty-msg">Tu carrito está vacío</div></div>
-        <div class="cart-checkout-details" id="cartCheckoutDetails" style="display: none;">
-            <div class="checkout-form">
-                <h4>Datos de Entrega / Reserva</h4>
-                <div class="form-group">
-                    <div class="radio-tile-group">
-                        <label class="radio-label"><input type="radio" name="deliveryMethod" value="domicilio" checked="" onchange="toggleAddressFields(true)"> Envío 🛵</label>
-                        <label class="radio-label"><input type="radio" name="deliveryMethod" value="recojer" onchange="toggleAddressFields(false)"> Probar en tienda 🥡</label>
-                    </div>
-                </div>
-                <div class="form-group"><input type="text" id="clientName" class="form-input" placeholder="Nombre completo"></div>
-                <div class="form-group"><input type="tel" id="clientPhone" class="form-input" placeholder="Teléfono"></div>
-                <div id="addressFields"><div class="form-group"><input type="text" id="clientAddress" class="form-input" placeholder="Dirección Completa de Envío"></div></div>
-            </div>
-            <div class="qr-cart-container">
-                <p>ESCANEA O COMPARTE</p>
-                <img id="cartQrCode" src="" alt="Código QR">
-            </div>
-        </div>
-        <div class="cart-footer">
-            <div class="cart-total-box"><span>Total:</span><span id="cartTotal">$0</span></div>
-            <button class="checkout-btn" onclick="sendWhatsAppOrder()"><i class="fa-brands fa-whatsapp"></i> Confirmar Apartado</button>
-        </div>
-    </div>
-
-    <div class="modal-overlay" id="authOverlay" onclick="closeAuthPrompt()" style="z-index: 3500;"></div>
-    <div class="admin-panel-modal" id="authModal" style="max-width: 320px; height: auto; padding: 25px; text-align: center; border-radius: 20px; top: 50%; left: 50%; transform: translate(-50%, -50%); display: none; flex-direction: column; z-index: 4000;">
-        <h3 style="color: var(--secondary); margin-bottom: 10px; font-size: 18px;"><i class="fa-solid fa-lock"></i> Acceso Restringido</h3>
-        <p id="authMessage" style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px; line-height: 1.4;">Ingrese su clave para continuar</p>
-        
-        <input type="text" id="authInput" class="form-input" style="-webkit-text-security: disc; text-security: disc; text-align: center; font-size: 20px; letter-spacing: 5px; margin-bottom: 20px; padding: 12px; border-radius: 12px;" placeholder="••••" onkeypress="handleAuthKeyPress(event)" autocomplete="off" spellcheck="false">
-        
-        <div style="display: flex; gap: 10px;">
-            <button class="admin-btn-cancel" onclick="closeAuthPrompt()" style="margin-top: 0; padding: 12px;">Cancelar</button>
-            <button class="admin-btn-save" onclick="submitAuthPrompt()" style="margin-top: 0; padding: 12px;">Ingresar</button>
-        </div>
-    </div>
-
-    <div class="modal-overlay" id="adminOverlay" onclick="closeAdminPanel()"></div>
-    <div class="admin-panel-modal" id="adminPanelModal">
-        <div class="admin-header">
-            <div style="display: flex; align-items: center; gap: 8px;">
-                <h3 style="margin: 0; color: white;"><i class="fa-solid fa-sliders"></i> Panel Administrador Central</h3>
-            </div>
-            <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
-                <button id="btnGlobalSync" onclick="syncCloudUI()" style="background: var(--accent); color: var(--secondary); border: 2px solid var(--primary); padding: 8px 14px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 13px; box-shadow: 0 2px 5px rgba(0,0,0,0.2);"><i class="fa-solid fa-cloud-arrow-up"></i> Publicar en Vivo</button>
-                
-                <button onclick="toggleAdminFullscreen()" style="background: #3b82f6; color: white; border: none; padding: 8px 14px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 13px;"><i class="fa-solid fa-expand"></i> Expandir</button>
-                <button onclick="recargarYcerrarSesion()" style="background: var(--success); color: white; border: none; padding: 8px 14px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 13px; box-shadow: 0 2px 5px rgba(0,0,0,0.2);"><i class="fa-solid fa-floppy-disk"></i> Recargar Interfaz</button>
-                <button onclick="logoutAdmin()" style="background: #EF4444; color: white; border: none; padding: 8px 14px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 13px;"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</button>
-            </div>
-        </div>
-        
-        <div class="admin-body" tabindex="0">
-            <div class="admin-tab-section">
-                <button class="admin-tab-link" id="tabLinkMenu" onclick="switchAdminTab('menu')">Catálogo</button>
-                <button class="admin-tab-link active" id="tabLinkCategories" onclick="switchAdminTab('categories')">Categorías</button>
-                <button class="admin-tab-link" id="tabLinkPromo" onclick="switchAdminTab('promo')">Promoción</button>
-                <button class="admin-tab-link" id="tabLinkBranches" onclick="switchAdminTab('branches')">Sucursales</button>
-                <button class="admin-tab-link" id="tabLinkAppearance" onclick="switchAdminTab('appearance')">Diseño</button>
-                <button class="admin-tab-link" id="tabLinkImages" onclick="switchAdminTab('images')">Imágenes</button>
-                <button class="admin-tab-link" id="tabLinkTexts" onclick="switchAdminTab('texts')">Textos</button>
-                <button class="admin-tab-link" id="tabLinkUrlgen" style="color: #25D366;" onclick="switchAdminTab('urlgen')"><i class="fa-solid fa-link"></i> URL</button>
-                <button class="admin-tab-link" id="tabLinkSecurity" style="color: #9333ea;" onclick="switchAdminTab('security')"><i class="fa-solid fa-lock"></i> Seguridad y Exportar</button>
-            </div>
-
-            <div id="adminSectionMenu" style="display: none;">
-                <div class="admin-form-box">
-                    <h4 id="adminFormTitle">Agregar una Prenda</h4>
-                    <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                        <div><label style="font-size:11px; font-weight:700;">Categoría:</label><select id="adminItemCategory" class="form-input"></select></div>
-                        <div><label style="font-size:11px; font-weight:700;">Precio Renta (MXN):</label><input type="number" id="adminItemPrice" class="form-input" placeholder="Ej. 1200"></div>
-                    </div>
-                    <div class="form-group"><label style="font-size:11px; font-weight:700;">Nombre del traje/modelo:</label><input type="text" id="adminItemName" class="form-input"></div>
-                    <div class="form-group"><label style="font-size:11px; font-weight:700;">Descripción / Elementos incluidos:</label><input type="text" id="adminItemDesc" class="form-input"></div>
-                    <div class="file-upload-wrapper">
-                        <label style="font-size:11px; font-weight:700;">Imagen de la prenda (URL Opcional):</label>
-                        <input type="text" id="adminItemImage" placeholder="Pega la URL de la imagen aquí" onchange="handleItemImageUrl(event)">
-                        <img id="adminItemImagePreview" style="width:70px; height:70px; display:none; margin-top:8px; border-radius:8px; object-fit:cover; border: 1px solid #E5E7EB;">
-                    </div>
-                    <button class="admin-btn-save" id="adminSubmitBtn" onclick="saveItemAdmin()">Agregar / Actualizar Prenda</button>
-                    <button class="admin-btn-cancel" id="adminCancelEditBtn" onclick="cancelEditAdmin()" style="display:none; background:#9CA3AF;">Cancelar Edición</button>
-                </div>
-                <div style="margin-top:20px;">
-                    <label style="font-size:12px; font-weight:700; color:var(--secondary);">Lista de Prendas (Se guardan en la nube):</label>
-                    <div class="admin-list-scroll" id="adminItemsList"></div>
-                </div>
-            </div>
-
-            <div id="adminSectionCategories" style="display: block;">
-                <div class="admin-form-box">
-                    <h4>Crear Nueva Categoría</h4>
-                    <div class="form-group"><label style="font-size:11px; font-weight:700;">ID (sin espacios, ej: 'gala'):</label><input type="text" id="adminCatId" class="form-input"></div>
-                    <div class="form-group"><label style="font-size:11px; font-weight:700;">Nombre a Mostrar (ej: 'Esmoquin y Gala'):</label><input type="text" id="adminCatName" class="form-input"></div>
-                    <button class="admin-btn-save" onclick="saveCategoryAdmin()">Agregar Categoría</button>
-                </div>
-                <div style="margin-top:20px;">
-                    <label style="font-size:12px; font-weight:700; color:var(--secondary);">Categorías Actuales:</label>
-                    <div class="admin-list-scroll" id="adminCategoriesList"></div>
-                </div>
-            </div>
-
-            <div id="adminSectionPromo" style="display: none;">
-                <div class="admin-form-box">
-                    <h4>Editar Banner Promocional</h4>
-                    <div class="form-group"><label style="font-size:11px; font-weight:700;">Etiqueta:</label><input type="text" id="adminPromoTag" class="form-input"></div>
-                    <div class="form-group"><label style="font-size:11px; font-weight:700;">Título:</label><input type="text" id="adminPromoTitle" class="form-input"></div>
-                    <div class="form-group"><label style="font-size:11px; font-weight:700;">Precio/Oferta:</label><input type="text" id="adminPromoPrice" class="form-input"></div>
-                    <div class="form-group"><label style="font-size:11px; font-weight:700;">Descripción:</label><input type="text" id="adminPromoDesc" class="form-input"></div>
-                    <div class="file-upload-wrapper"><label style="font-size:11px; font-weight:700;">Imagen de la Promoción (URL):</label><input type="text" id="inputAdminPromoImg" onchange="handleImageUrl(event, 'promoImg')"></div>
-                    <button class="admin-btn-save" onclick="savePromoAdmin()">Actualizar Datos de Promoción</button>
-                </div>
-            </div>
-
-            <div id="adminSectionBranches" style="display: none;">
-                <div class="admin-form-box">
-                    <h4 id="adminBranchFormTitle">Agregar Sucursal</h4>
-                    <div class="form-group"><label style="font-size:11px; font-weight:700;">Nombre de Sucursal:</label><input type="text" id="adminBranchName" class="form-input"></div>
-                    <div class="form-group"><label style="font-size:11px; font-weight:700;">Dirección Física:</label><input type="text" id="adminBranchAddr" class="form-input"></div>
-                    <div class="form-group"><label style="font-size:11px; font-weight:700;">WhatsApp (Ej. 52...):</label><input type="text" id="adminBranchPhone" class="form-input"></div>
-                    <div class="form-group"><label style="font-size:11px; font-weight:700;">Horarios:</label><input type="text" id="adminBranchHours" class="form-input"></div>
-                    <button class="admin-btn-save" id="adminBranchSubmitBtn" onclick="saveBranchAdmin()">Agregar Sucursal</button>
-                    <button class="admin-btn-cancel" id="adminCancelBranchEditBtn" onclick="cancelEditBranchAdmin()" style="display:none; background:#9CA3AF;">Cancelar Edición</button>
-                </div>
-                <div style="margin-top:20px;">
-                    <label style="font-size:12px; font-weight:700; color:var(--secondary);">Lista de Sucursales:</label>
-                    <div class="admin-list-scroll" id="adminBranchesList"></div>
-                </div>
-            </div>
-
-            <div id="adminSectionAppearance" style="display: none;">
-                <div class="admin-form-box">
-                    <h4>Configuración Visual Avanzada</h4>
-                    <label style="font-size:12px; font-weight:700; display:block; margin-bottom:10px;">Paleta de Colores:</label>
-                    <div class="color-picker-group"><label style="font-size:13px; font-weight:600;">Color Principal:</label><input type="color" id="colorPrimary" onchange="updateDesignSettings()"></div>
-                    <div class="color-picker-group"><label style="font-size:13px; font-weight:600;">Color Secundario:</label><input type="color" id="colorSecondary" onchange="updateDesignSettings()"></div>
-                    <div class="color-picker-group"><label style="font-size:13px; font-weight:600;">Color de Acento:</label><input type="color" id="colorAccent" onchange="updateDesignSettings()"></div>
-                    <div class="form-group"><label style="font-size:11px; font-weight:700; display:block; margin:20px 0 10px;">Alineación Texto Hero:</label><select id="heroTextAlign" class="form-input" onchange="updateDesignSettings()"><option value="left">Izquierda</option><option value="center">Centrado</option><option value="right">Derecha</option></select></div>
-                    <div class="form-group"><label style="font-size:11px; font-weight:700; display:block; margin:20px 0 10px;">Tamaño Logo (px):</label><input type="number" id="adminLogoSize" class="form-input" onchange="updateDesignSettings()"></div>
-                </div>
-            </div>
-
-            <div id="adminSectionImages" style="display: none;">
-                <div class="admin-form-box">
-                    <h4>Gestión de Imágenes Generales</h4>
-                    <div class="file-upload-wrapper"><label style="font-size:12px; font-weight:700;">Logo Principal:</label><input type="text" id="inputAdminLogo" onchange="handleImageUrl(event, 'logo')"></div>
-                    <div class="file-upload-wrapper"><label style="font-size:12px; font-weight:700;">Fondo Encabezado:</label><input type="text" id="inputAdminHeroBg" onchange="handleImageUrl(event, 'heroBg')"></div>
-                    <div class="file-upload-wrapper"><label style="font-size:12px; font-weight:700;">Código QR Global:</label><input type="text" id="inputAdminQrCode" onchange="handleImageUrl(event, 'qrCode')"></div>
-                    
-                    <div style="margin-top: 15px; border-top: 1px solid #E5E7EB; padding-top: 15px; margin-bottom: 15px;">
-                        <label style="font-size:13px; font-weight:700; color:var(--primary); display:block; margin-bottom:12px;"><i class="fa-solid fa-expand"></i> Escalado de Imágenes y Modos de Corte</label>
-                        <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 8px;">
-                            <div>
-                                <label style="font-size:11px; font-weight:700;">Corte Catálogo:</label>
-                                <select id="adminCatalogImgFit" class="form-input" onchange="updateImageSizesSettings()">
-                                    <option value="cover">Recortar para Rellenar (Cover)</option>
-                                    <option value="contain">Adaptar Sin Cortes (Contain)</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label style="font-size:11px; font-weight:700;">Alto Catálogo (px):</label>
-                                <input type="number" id="adminCatalogImgHeight" class="form-input" placeholder="200" oninput="updateImageSizesSettings()">
-                            </div>
-                        </div>
-                        <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 8px;">
-                            <div>
-                                <label style="font-size:11px; font-weight:700;">Corte Slider:</label>
-                                <select id="adminSliderImgFit" class="form-input" onchange="updateImageSizesSettings()">
-                                    <option value="cover">Recortar para Rellenar (Cover)</option>
-                                    <option value="contain">Adaptar Sin Cortes (Contain)</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label style="font-size:11px; font-weight:700;">Alto Slider (px):</label>
-                                <input type="number" id="adminSliderImgHeight" class="form-input" placeholder="280" oninput="updateImageSizesSettings()">
-                            </div>
-                        </div>
-                        <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                            <div>
-                                <label style="font-size:11px; font-weight:700;">Corte Promoción:</label>
-                                <select id="adminPromoImgFit" class="form-input" onchange="updateImageSizesSettings()">
-                                    <option value="cover">Recortar para Rellenar (Cover)</option>
-                                    <option value="contain">Adaptar Sin Cortes (Contain)</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label style="font-size:11px; font-weight:700;">Corte de Logo:</label>
-                                <select id="adminLogoFit" class="form-input" onchange="updateImageSizesSettings()">
-                                    <option value="contain">Adaptar Sin Cortes (Contain)</option>
-                                    <option value="cover">Recortar para Rellenar (Cover)</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="file-upload-wrapper" style="margin-top:20px; border-top: 2px solid #E5E7EB; padding-top:15px;">
-                        <label style="font-size:12px; font-weight:700;">Slider de Animación (URL e Info):</label>
-                        <div style="display:flex; gap:8px; margin-bottom:8px;"><input type="text" id="adminSlider1" class="form-input" style="flex: 2;"><input type="text" id="adminSliderDesc1" class="form-input" style="flex: 1;"></div>
-                        <div style="display:flex; gap:8px; margin-bottom:8px;"><input type="text" id="adminSlider2" class="form-input" style="flex: 2;"><input type="text" id="adminSliderDesc2" class="form-input" style="flex: 1;"></div>
-                        <div style="display:flex; gap:8px; margin-bottom:8px;"><input type="text" id="adminSlider3" class="form-input" style="flex: 2;"><input type="text" id="adminSliderDesc3" class="form-input" style="flex: 1;"></div>
-                        <div style="display:flex; gap:8px; margin-bottom:8px;"><input type="text" id="adminSlider4" class="form-input" style="flex: 2;"><input type="text" id="adminSliderDesc4" class="form-input" style="flex: 1;"></div>
-                        <div style="display:flex; gap:8px;"><input type="text" id="adminSlider5" class="form-input" style="flex: 2;"><input type="text" id="adminSliderDesc5" class="form-input" style="flex: 1;"></div>
-                    </div>
-                    <button class="admin-btn-save" style="margin-top:20px;" onclick="saveImagesAdmin()">Actualizar Slider en la Nube</button>
-                </div>
-            </div>
-
-            <div id="adminSectionTexts" style="display: none;">
-                <div class="admin-form-box">
-                    <h4>Textos Generales y Configuración</h4>
-                    <div class="form-group"><label style="font-size:11px; font-weight:700;">Título Principal:</label><input type="text" id="adminHeroTitle" class="form-input"></div>
-                    <div class="form-group"><label style="font-size:11px; font-weight:700;">Descripción Principal:</label><textarea id="adminHeroDesc" class="form-input"></textarea></div>
-                    <div class="form-group"><label style="font-size:11px; font-weight:700;">Título Slider:</label><input type="text" id="adminSliderTitle" class="form-input"></div>
-                    <div class="form-group"><label style="font-size:11px; font-weight:700;">Título Catálogo:</label><input type="text" id="adminMenuTitle" class="form-input"></div>
-                    <div class="form-group"><label style="font-size:11px; font-weight:700;">Título Mapa:</label><input type="text" id="adminMapTitle" class="form-input"></div>
-                    <div class="form-group"><label style="font-size:11px; font-weight:700;">URL Mapa (Iframe):</label><input type="text" id="adminMapUrl" class="form-input"></div>
-                    <div class="form-group"><label style="font-size:11px; font-weight:700;">Badge Digital:</label><input type="text" id="adminPromoDigitalBadge" class="form-input"></div>
-                    <div class="form-group"><label style="font-size:11px; font-weight:700;">Título Digital:</label><input type="text" id="adminPromoDigitalTitle" class="form-input"></div>
-                    <div class="form-group"><label style="font-size:11px; font-weight:700;">Subtítulo Digital:</label><input type="text" id="adminPromoDigitalSub" class="form-input"></div>
-                    <div class="form-group"><label style="font-size:11px; font-weight:700;">Texto Botón WP:</label><input type="text" id="adminPromoDigitalCta" class="form-input"></div>
-                    <div class="form-group"><label style="font-size:11px; font-weight:700;">Descripción Footer:</label><input type="text" id="adminFooterAbout" class="form-input"></div>
-                    <div class="form-group"><label style="font-size:11px; font-weight:700;">Copyright:</label><input type="text" id="adminFooterCopy" class="form-input"></div>
-                    <button class="admin-btn-save" onclick="saveTextsAdmin()">Actualizar Textos</button>
-                </div>
-            </div>
-
-            <div id="adminSectionUrlgen" style="display: none;">
-                <div class="admin-form-box">
-                    <h4><i class="fa-solid fa-cloud-arrow-up"></i> Generador de URL para Imágenes</h4>
-                    <p style="font-size:12px; color:var(--text-muted); margin-bottom:15px; line-height:1.5;">Sube tu foto y cópiala como URL para usar en el menú o sliders.</p>
-                    <div style="text-align: center; padding: 30px; border: 2px dashed var(--primary); border-radius: 12px; background: rgba(30, 58, 138, 0.05); margin-bottom: 20px;">
-                        <label style="background: var(--secondary); color: var(--white); padding: 12px 24px; border-radius: 8px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 10px;">
-                            <i class="fa-solid fa-file-image"></i> Seleccionar Imagen <input type="file" id="imageUploaderInput" accept="image/*" style="display:none;" onchange="uploadToImgbb(event)">
-                        </label>
-                        <div id="uploadStatus" style="font-size: 13px; font-weight: 600; margin-top: 15px;">Esperando imagen...</div>
-                    </div>
-                    <div class="form-group" style="background: #fdfdfd; padding: 15px; border-radius: 10px; border: 1px solid #E5E7EB;">
-                        <label style="font-size:11px; font-weight:700; color: var(--secondary);">URL Generada:</label>
-                        <div style="display:flex; gap:8px; margin-top: 8px;">
-                            <input type="text" id="generatedImageUrl" class="form-input" readonly style="background: #F3F4F6;">
-                            <button onclick="copyGeneratedUrl()" style="background: var(--success); color: var(--white); border: none; padding: 0 20px; border-radius: 8px; cursor: pointer; font-weight: bold;"><i class="fa-solid fa-copy"></i> Copiar</button>
-                        </div>
-                    </div>
-                    <div style="text-align: center;"><img id="generatedImagePreview" style="max-width: 100%; max-height: 250px; margin-top: 20px; border-radius: 12px; display: none; box-shadow: 0 4px 15px rgba(0,0,0,0.1);"></div>
-                </div>
-            </div>
-
-            <div id="adminSectionSecurity" style="display: none;">
-                <div class="admin-form-box" style="margin-bottom: 25px;">
-                    <h4><i class="fa-solid fa-lock"></i> Gestión de Clave del Panel Oculto (Logo)</h4>
-                    <p style="font-size:11px; color:var(--text-muted); margin-bottom:15px;">Cambia la clave de acceso del panel que está en el logo. Al guardar, se cerrará la sesión actual para aplicar la seguridad.</p>
-                    <div class="form-group">
-                        <label style="font-size:11px; font-weight:700;">Nueva Clave del Panel Logo:</label>
-                        <input type="text" id="adminLogoPass" class="form-input" placeholder="Ej. 2121">
-                    </div>
-                    <div class="form-group">
-                        <label style="font-size:11px; font-weight:700;">Fecha de Caducidad de la Clave:</label>
-                        <input type="date" id="adminLogoExpiration" class="form-input">
-                    </div>
-                    <button class="admin-btn-save" onclick="saveSecuritySettings()" style="margin-top: 10px;"><i class="fa-solid fa-floppy-disk"></i> Actualizar Seguridad</button>
-                </div>
-
-                <div class="admin-form-box">
-                    <h4><i class="fa-solid fa-file-code"></i> Exportar Código Actualizado</h4>
-                    <p style="font-size:11px; color:var(--text-muted); margin-bottom:10px;">Visualiza y descarga el código fuente HTML en vivo con todos tus cambios para respaldarlo.</p>
-                    <button class="admin-btn-save" onclick="openExportPanel()" style="background: #3b82f6; margin-top: 5px;"><i class="fa-solid fa-eye"></i> Visualizar y Descargar HTML</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <div class="modal-overlay" id="exportOverlay" onclick="closeExportPanel()"></div>
-    <div class="admin-panel-modal" id="exportPanelModal">
-        <div class="admin-header">
-            <h3><i class="fa-solid fa-code"></i> Exportar Código HTML</h3>
-            <button class="close-cart" onclick="closeExportPanel()">×</button>
-        </div>
-        <div class="admin-body">
-            <textarea id="exportHtmlTextarea" class="form-input" style="width: 100%; height: 350px; font-family: monospace; font-size: 11px; white-space: pre; background:#f4f4f4;" readonly=""></textarea>
-            <button class="admin-btn-save" onclick="downloadHTML()" style="margin-top: 15px; background: var(--success);"><i class="fa-solid fa-download"></i> Descargar Códigos Completos</button>
-        </div>
-    </div>
-
-    <script>
-        // =========================================================================
-        // 🚀 CONFIGURACIÓN MAESTRA DE LA NUBE (NPOINT) Y CLAVES OFUSCADAS
-        // =========================================================================
-        // ID Actualizado según solicitud.
-        const MASTER_NPOINT_ID = "863a1486a7b9699d566c"; 
-        // =========================================================================
-
-        let sysSettings = JSON.parse(localStorage.getItem('rentatrajesv2_sys')) || {
-            npoint: { id: "" }, 
-            security: { 
-                logoPass: "1212".split('').reverse().join(''), 
-                qrPass: "524232".split('').reverse().join(''), 
-                expiration: "2026-12-31" 
-            }
-        };
-        
-        if(sysSettings.firebase) {
-            delete sysSettings.firebase;
-            if(!sysSettings.npoint) sysSettings.npoint = { id: "" };
-            localStorage.setItem('rentatrajesv2_sys', JSON.stringify(sysSettings));
-        }
-
-        function getCloudId() {
-            if (MASTER_NPOINT_ID && MASTER_NPOINT_ID !== "INGRESA_TU_ID_AQUI") {
-                return MASTER_NPOINT_ID;
-            }
-            return sysSettings.npoint?.id;
-        }
-
-        let appConfig = JSON.parse(localStorage.getItem('rentatrajesv2_config')) || {
-            "colors": { "primary": "#1E3A8A", "secondary": "#111111", "accent": "#D4AF37" },
-            "layout": { "heroTextAlign": "center", "logoSize": "65" },
-            "images": { 
-                "logo": "https://images.unsplash.com/photo-1593032465175-481da7e4725f?w=150&h=150&fit=crop", 
-                "heroBg": "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?q=80&w=2000&auto=format&fit=crop", 
-                "promoImg": "https://images.unsplash.com/photo-1598808503744-44d883d0a13b?q=80&w=800&auto=format&fit=crop", 
-                "qrCode": "https://i.ibb.co/bM6kRzQx/qr-code-2.png" 
-            },
-            "imageSizes": {
-                "catalogFit": "cover",
-                "catalogHeight": "200",
-                "sliderFit": "cover",
-                "sliderHeight": "280",
-                "promoFit": "cover",
-                "logoFit": "contain"
-            }
-        };
-        let appTexts = JSON.parse(localStorage.getItem('rentatrajesv2_texts')) || {
-            "heroTitle": "Renta de Trajes de Gala", "heroDesc": "El estilo y la elegancia perfectos para tus eventos más importantes. Descubre nuestras colecciones exclusivas.", "sliderTitle": "Nuestras Colecciones", "menuTitle": "Catálogo Oficial", "mapTitle": "Nuestra Ubicación", "mapIframeUrl": "", "promoDigitalBadge": "Alta Costura", "promoDigitalTitle": "¡Reserva tu Traje!", "promoDigitalSub": "Elegancia • Estilo • Ajuste Perfecto.", "promoDigitalCta": "¡Renta tu traje ideal hoy mismo!", "footerAbout": "La mejor opción en renta de trajes y esmoquin para caballeros.", "footerCopy": "© 2026 Renta de Trajes Elegantes."
-        };
-        let branchesData = JSON.parse(localStorage.getItem('rentatrajesv2_branches')) || [
-            { "name": "Sucursal Central", "address": "Av. Premium Elegancia 123", "phone": "526692240194", "hours": "Lunes a Sábado 10 AM a 8 PM" }
-        ];
-        let categoryMap = JSON.parse(localStorage.getItem('rentatrajesv2_categories')) || { "gala": "Esmoquin y Gala", "ejecutivo": "Trajes Ejecutivos" };
-        let menuData = JSON.parse(localStorage.getItem('rentatrajesv2_menuData')) || [
-            { "name": "Esmoquin Clásico Negro", "price": 1200, "category": "gala", "desc": "Incluye saco, pantalón, camisa de gala, faja y moño ajustable.", "image": "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=500&auto=format&fit=crop" }
-        ];
-        let promoData = JSON.parse(localStorage.getItem('rentatrajesv2_promoData')) || { "tag": "Promo de Temporada", "title": "Paquete de Graduación", "price": "$999 Mxn", "desc": "Renta de traje completo con accesorios incluidos para graduados." };
-        let sliderData = JSON.parse(localStorage.getItem('rentatrajesv2_slider')) || [
-            { "url": "https://images.unsplash.com/photo-1593032465175-481da7e4725f?w=800&auto=format&fit=crop", "desc": "Ajuste a tu Medida" }
-        ];
-
-        let cart = [];
-        let logoClickCount = 0; let logoClickTimeout;
-        let qrClickCount = 0; let qrClickTimeout;
-        let currentActiveCategory = Object.keys(categoryMap)[0];
-        let editingItemIndex = null; let editingBranchIndex = null;
-        let tempItemImage = "";
-        let currentSlide = 0; 
-        let autoSlideTimer;   
-        let currentAuthCallback = null;
-
-        // --- SISTEMA DE AUTENTICACIÓN PERSONALIZADO ---
-        function showCustomPrompt(message, callback) {
-            document.getElementById('authMessage').innerText = message;
-            document.getElementById('authInput').value = '';
-            document.getElementById('authOverlay').classList.add('show');
-            document.getElementById('authModal').style.display = 'flex';
-            document.getElementById('authInput').focus();
-            currentAuthCallback = callback;
-        }
-
-        function closeAuthPrompt() {
-            document.getElementById('authOverlay').classList.remove('show');
-            document.getElementById('authModal').style.display = 'none';
-            if(currentAuthCallback) currentAuthCallback(null);
-            currentAuthCallback = null;
-        }
-
-        function submitAuthPrompt() {
-            const val = document.getElementById('authInput').value.trim();
-            document.getElementById('authOverlay').classList.remove('show');
-            document.getElementById('authModal').style.display = 'none';
-            if(currentAuthCallback) currentAuthCallback(val);
-            currentAuthCallback = null;
-        }
-
-        function handleAuthKeyPress(e) {
-            if (e.key === 'Enter') submitAuthPrompt();
-        }
-
-        function checkAuth(correctPass, source, successCallback) {
-            let today = new Date().toISOString().split('T')[0];
-            let isExpired = sysSettings.security.expiration && (today > sysSettings.security.expiration);
-            
-            let msg = isExpired ? "¡SISTEMA CADUCADO!\nIngrese Clave Maestra:" : "Contraseña de acceso:";
-            const superMaster = "6202retsam".split('').reverse().join(''); 
-            
-            showCustomPrompt(msg, function(entered) {
-                if (entered === null) return; 
-                
-                if (isExpired) {
-                    if (entered === superMaster) {
-                        alert("Acceso maestro concedido. Recuerde actualizar la fecha de caducidad en el panel.");
-                        localStorage.setItem('oud_admin_logged_' + source, 'true'); 
-                        successCallback();
-                    } else {
-                        alert("Clave caducada. Acceso blocked.");
-                    }
-                } else {
-                    if (entered === correctPass || entered === superMaster) {
-                        localStorage.setItem('oud_admin_logged_' + source, 'true'); 
-                        successCallback();
-                    } else {
-                        alert("Contraseña incorrecta");
-                    }
-                }
-            });
-        }
-        // ----------------------------------------------
-
-        function openExportPanel() {
-            document.getElementById('exportOverlay').classList.add('show');
-            document.getElementById('exportPanelModal').classList.add('show');
-            document.getElementById('exportHtmlTextarea').value = "Generando código en vivo...";
-            setTimeout(() => {
-                document.getElementById('exportHtmlTextarea').value = getLiveHTML();
-            }, 500);
-        }
-
-        function closeExportPanel() {
-            document.getElementById('exportOverlay').classList.remove('show');
-            document.getElementById('exportPanelModal').classList.remove('show');
-        }
-
-        function downloadHTML() {
-            const html = document.getElementById('exportHtmlTextarea').value;
-            if(!html || html.startsWith("Generando")) return;
-            const blob = new Blob([html], {type: "text/html"});
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = "Trajes_Live.html";
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-        }
-
-        function getLiveHTML() {
-            const clone = document.documentElement.cloneNode(true);
-            
-            const empties = ['#menuGrid', '#sliderTrack', '#categoryTabsContainer', '#sliderDots', '#branchSelect', '#adminItemsList', '#adminCategoriesList', '#adminBranchesList', '#cartBody'];
-            empties.forEach(sel => { 
-                const el = clone.querySelector(sel); 
-                if(el) el.innerHTML = ''; 
-            });
-            
-            clone.querySelectorAll('.show, .open, .fullscreen').forEach(el => el.classList.remove('show', 'open', 'fullscreen'));
-            
-            const dataScript = document.createElement('script');
-            dataScript.textContent = `
-                // --- DATOS EXPORTADOS DESDE LA NUBE / PANEL DE CONTROL ---
-                localStorage.setItem('rentatrajesv2_sys', JSON.stringify(${JSON.stringify(sysSettings)}));
-                localStorage.setItem('rentatrajesv2_config', JSON.stringify(${JSON.stringify(appConfig)}));
-                localStorage.setItem('rentatrajesv2_texts', JSON.stringify(${JSON.stringify(appTexts)}));
-                localStorage.setItem('rentatrajesv2_branches', JSON.stringify(${JSON.stringify(branchesData)}));
-                localStorage.setItem('rentatrajesv2_categories', JSON.stringify(${JSON.stringify(categoryMap)}));
-                localStorage.setItem('rentatrajesv2_menuData', JSON.stringify(${JSON.stringify(menuData)}));
-                localStorage.setItem('rentatrajesv2_promoData', JSON.stringify(${JSON.stringify(promoData)}));
-                localStorage.setItem('rentatrajesv2_slider', JSON.stringify(${JSON.stringify(sliderData)}));
-            `;
-            clone.querySelector('head').insertBefore(dataScript, clone.querySelector('head').firstChild);
-            return "<!DOCTYPE html>\n" + clone.outerHTML;
-        }
-        
-        function syncCloudUI() {
-            const npId = getCloudId();
-            if(!npId || npId === '' || npId === 'INGRESA_TU_ID_AQUI') {
-                alert("⚠️ Primero debes configurar tu ID maestro de Npoint en el código (MASTER_NPOINT_ID) para poder sincronizar.\n\nEl sistema estático necesita saber este ID para actualizar a los clientes.");
-                return;
-            }
-            
-            const dataToSave = {
-                appConfig, appTexts, branchesData, categoryMap, menuData, promoData, sliderData, sysSettings
-            };
-            
-            const btn = document.getElementById('btnGlobalSync');
-            const originalText = btn.innerHTML;
-            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Subiendo...';
-            
-            fetch(`https://api.npoint.io/${npId}?v=rentatrajesv2`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(dataToSave)
-            })
-            .then(response => response.json())
-            .then(data => {
-                btn.innerHTML = '<i class="fa-solid fa-check"></i> ¡Publicado!';
-                setTimeout(() => btn.innerHTML = originalText, 3000);
-                alert("✅ ¡Sistema sincronizado en la nube con éxito! Todos los usuarios en el mundo verán la actualización sin que tengas que volver a subir código.");
-            })
-            .catch(error => { 
-                console.error("Error sincronizando con la nube", error);
-                btn.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Error';
-                setTimeout(() => btn.innerHTML = originalText, 3000);
-                alert("❌ Hubo un error al subir a la nube. Verifica tu conexión a internet o tu ID de Npoint.");
-            });
-        }
-
-        function initApp() {
-            const npId = getCloudId();
-            
-            if (npId && npId !== '' && npId !== 'INGRESA_TU_ID_AQUI') {
-                const cacheBusterUrl = `https://api.npoint.io/${npId}?nocache=${new Date().getTime()}&v=rentatrajesv2`;
-                
-                fetch(cacheBusterUrl, {
-                    method: 'GET',
-                    headers: {
-                        'Cache-Control': 'no-cache, no-store, must-revalidate',
-                        'Pragma': 'no-cache',
-                        'Expires': '0'
-                    }
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        if(data && Object.keys(data).length > 0) {
-                            if(data.appConfig) appConfig = data.appConfig;
-                            if(data.appTexts) appTexts = data.appTexts;
-                            if(data.branchesData) branchesData = data.branchesData;
-                            if(data.categoryMap) categoryMap = data.categoryMap;
-                            if(data.menuData) menuData = data.menuData;
-                            if(data.promoData) promoData = data.promoData;
-                            if(data.sliderData) sliderData = data.sliderData;
-                            if(data.sysSettings) sysSettings = data.sysSettings;
-
-                            localStorage.setItem('rentatrajesv2_sys', JSON.stringify(sysSettings));
-                            localStorage.setItem('rentatrajesv2_config', JSON.stringify(appConfig));
-                            localStorage.setItem('rentatrajesv2_texts', JSON.stringify(appTexts));
-                            localStorage.setItem('rentatrajesv2_branches', JSON.stringify(branchesData));
-                            localStorage.setItem('rentatrajesv2_categories', JSON.stringify(categoryMap));
-                            localStorage.setItem('rentatrajesv2_menuData', JSON.stringify(menuData));
-                            localStorage.setItem('rentatrajesv2_promoData', JSON.stringify(promoData));
-                            localStorage.setItem('rentatrajesv2_slider', JSON.stringify(sliderData));
-                        }
-                        startRender();
-                    })
-                    .catch(error => { 
-                        console.error("Error el proceso al jalar datos", error); 
-                        startRender(); 
-                    });
-            } else {
-                startRender();
-            }
-        }
-
-        function syncCloud() {
-            const npId = getCloudId();
-            if(npId && npId !== '' && npId !== 'INGRESA_TU_ID_AQUI') {
-                const dataToSave = { appConfig, appTexts, branchesData, categoryMap, menuData, promoData, sliderData, sysSettings };
-                fetch(`https://api.npoint.io/${npId}?v=rentatrajesv2`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(dataToSave)
-                }).catch(error => console.error("Error en sincronización silenciosa", error));
-            }
-        }
-
-        function startRender() {
-            applyGlobalConfig();
-            renderBranchSelector(); updateBranchInfo();
-            renderSlider(); renderCategoryTabs(); renderPromoUI();
-            if(currentActiveCategory) filterCategory(currentActiveCategory);
-            setupSliderDots(); loadAdminInputs(); updateCartUI();
-            
-            requestAnimationFrame(() => {
-                document.body.classList.add('ready');
-            });
-        }
-
-        function applyGlobalConfig() {
-            if (!appConfig.imageSizes) {
-                appConfig.imageSizes = {
-                    catalogFit: "cover",
-                    catalogHeight: "200",
-                    sliderFit: "cover",
-                    sliderHeight: "280",
-                    promoFit: "cover",
-                    logoFit: "contain"
-                };
-            }
-
-            document.documentElement.style.setProperty('--catalog-img-fit', appConfig.imageSizes.catalogFit || 'cover');
-            document.documentElement.style.setProperty('--catalog-img-height', (appConfig.imageSizes.catalogHeight || 200) + 'px');
-            document.documentElement.style.setProperty('--slider-img-fit', appConfig.imageSizes.sliderFit || 'cover');
-            document.documentElement.style.setProperty('--slider-img-height', (appConfig.imageSizes.sliderHeight || 280) + 'px');
-            document.documentElement.style.setProperty('--promo-img-fit', appConfig.imageSizes.promoFit || 'cover');
-            document.documentElement.style.setProperty('--logo-fit', appConfig.imageSizes.logoFit || 'contain');
-
-            document.documentElement.style.setProperty('--primary', appConfig.colors.primary);
-            document.documentElement.style.setProperty('--secondary', appConfig.colors.secondary);
-            document.documentElement.style.setProperty('--accent', appConfig.colors.accent);
-            document.documentElement.style.setProperty('--logo-size', (appConfig.layout.logoSize || 65) + 'px');
-            document.getElementById('heroSection').style.textAlign = appConfig.layout.heroTextAlign;
-            document.getElementById('mainLogo').src = appConfig.images.logo;
-            document.getElementById('footerLogo').src = appConfig.images.logo;
-            document.getElementById('heroSection').style.backgroundImage = `linear-gradient(rgba(17,17,17,0.7), rgba(17,17,17,0.9)), url('${appConfig.images.heroBg}')`;
-            document.getElementById('domPromoImg').style.backgroundImage = `url('${appConfig.images.promoImg}')`;
-            document.getElementById('topQrCode').src = appConfig.images.qrCode;
-            document.getElementById('cartQrCode').src = appConfig.images.qrCode;
-            
-            document.getElementById('colorPrimary').value = appConfig.colors.primary;
-            document.getElementById('colorSecondary').value = appConfig.colors.secondary;
-            document.getElementById('colorAccent').value = appConfig.colors.accent;
-            document.getElementById('heroTextAlign').value = appConfig.layout.heroTextAlign;
-
-            document.getElementById('domHeroTitle').innerText = appTexts.heroTitle;
-            document.getElementById('domHeroDesc').innerText = appTexts.heroDesc;
-            document.getElementById('domSliderTitle').innerText = appTexts.sliderTitle;
-            document.getElementById('domMenuTitle').innerText = appTexts.menuTitle;
-            document.getElementById('domMapTitle').innerText = appTexts.mapTitle;
-            document.getElementById('domPromoDigitalBadge').innerText = appTexts.promoDigitalBadge;
-            document.getElementById('domPromoDigitalTitle').innerText = appTexts.promoDigitalTitle;
-            document.getElementById('domPromoDigitalSub').innerText = appTexts.promoDigitalSub;
-            document.getElementById('domPromoDigitalCta').innerText = appTexts.promoDigitalCta;
-            document.getElementById('domFooterAbout').innerText = appTexts.footerAbout;
-            document.getElementById('domFooterCopy').innerHTML = appTexts.footerCopy;
-            document.getElementById('branchMapIframe').src = appTexts.mapIframeUrl || "https://maps.google.com/maps?q=Calz%20Paseo%20de%20la%20Rosita%20301-B,%20Residencial%20Campestre%20la%20Rosita,%2027250%20Torreón,%20Coah.,%20México&t=&z=15&ie=UTF8&iwloc=&output=embed
-";
-        }
-
-        function updateDesignSettings() {
-            appConfig.colors.primary = document.getElementById('colorPrimary').value;
-            appConfig.colors.secondary = document.getElementById('colorSecondary').value;
-            appConfig.colors.accent = document.getElementById('colorAccent').value;
-            appConfig.layout.heroTextAlign = document.getElementById('heroTextAlign').value;
-            appConfig.layout.logoSize = document.getElementById('adminLogoSize').value || 65;
-            localStorage.setItem('rentatrajesv2_config', JSON.stringify(appConfig)); syncCloud();
-            applyGlobalConfig();
-        }
-
-        function updateImageSizesSettings() {
-            if (!appConfig.imageSizes) appConfig.imageSizes = {};
-            appConfig.imageSizes.catalogFit = document.getElementById('adminCatalogImgFit').value;
-            appConfig.imageSizes.catalogHeight = document.getElementById('adminCatalogImgHeight').value || 200;
-            appConfig.imageSizes.sliderFit = document.getElementById('adminSliderImgFit').value;
-            appConfig.imageSizes.sliderHeight = document.getElementById('adminSliderImgHeight').value || 280;
-            appConfig.imageSizes.promoFit = document.getElementById('adminPromoImgFit').value;
-            appConfig.imageSizes.logoFit = document.getElementById('adminLogoFit').value;
-            
-            localStorage.setItem('rentatrajesv2_config', JSON.stringify(appConfig)); 
-            syncCloud();
-            applyGlobalConfig();
-        }
-
-        function handleImageUrl(event, imageKey) {
-            const url = event.target.value.trim();
-            if (url) {
-                appConfig.images[imageKey] = url;
-                localStorage.setItem('rentatrajesv2_config', JSON.stringify(appConfig)); syncCloud();
-                applyGlobalConfig();
-            }
-        }
-
-        function clickLogoCounter() {
-            logoClickCount++; clearTimeout(logoClickTimeout);
-            logoClickTimeout = setTimeout(() => { logoClickCount = 0; }, 3000);
-            if (logoClickCount === 2) {
-                logoClickCount = 0;
-                if (localStorage.getItem('oud_admin_logged_logo') === 'true') { 
-                    openAdminPanel('logo'); 
-                } else { 
-                    checkAuth(sysSettings.security.logoPass, 'logo', () => openAdminPanel('logo')); 
-                }
-            }
-        }
-
-        function clickQrCounter() {
-            qrClickCount++; clearTimeout(qrClickTimeout);
-            qrClickTimeout = setTimeout(() => { qrClickCount = 0; }, 3000);
-            if (qrClickCount === 10) {
-                qrClickCount = 0;
-                if (localStorage.getItem('oud_admin_logged_qr') === 'true') { 
-                    openAdminPanel('qr'); 
-                } else { 
-                    checkAuth(sysSettings.security.qrPass, 'qr', () => openAdminPanel('qr')); 
-                }
-            }
-        }
-
-        function logoutAdmin() {
-            localStorage.removeItem('oud_admin_logged_logo');
-            localStorage.removeItem('oud_admin_logged_qr');
-            localStorage.removeItem('oud_admin_logged');
-            closeAdminPanel(); alert("Sesiones cerradas correctamente.");
-        }
-
-        function toggleAdminFullscreen() {
-            const modal = document.getElementById('adminPanelModal');
-            modal.classList.toggle('fullscreen');
-            document.querySelector('.admin-body').focus();
-        }
-
-        function openAdminPanel(source) { 
-            document.getElementById('adminPanelModal').classList.add('show'); 
-            document.getElementById('adminOverlay').classList.add('show'); 
-            renderAdminLists(); 
-            
-            const secTab = document.getElementById('tabLinkSecurity');
-            if (source === 'qr') {
-                secTab.style.display = 'inline-block';
-            } else {
-                secTab.style.display = 'none';
-                if (document.getElementById('adminSectionSecurity').style.display === 'block') {
-                    switchAdminTab('menu');
-                }
-            }
-        }
-
-        function closeAdminPanel() { 
-            const modal = document.getElementById('adminPanelModal');
-            modal.classList.remove('show'); 
-            modal.classList.remove('fullscreen'); 
-            document.getElementById('adminOverlay').classList.remove('show'); 
-            cancelEditAdmin(); 
-            cancelEditBranchAdmin(); 
-        }
-        
-        function switchAdminTab(tabName) {
-            const sections = ['Menu', 'Categories', 'Promo', 'Branches', 'Appearance', 'Images', 'Texts', 'Urlgen', 'Security'];
-            sections.forEach(sec => {
-                document.getElementById(`adminSection${sec}`).style.display = (sec.toLowerCase() === tabName) ? 'block' : 'none';
-                document.getElementById(`tabLink${sec}`).classList.toggle('active', sec.toLowerCase() === tabName);
-            });
-        }
-
-        function loadAdminInputs() {
-            document.getElementById('adminPromoTag').value = promoData.tag; document.getElementById('adminPromoTitle').value = promoData.title;
-            document.getElementById('adminPromoPrice').value = promoData.price; document.getElementById('adminPromoDesc').value = promoData.desc;
-            document.getElementById('inputAdminPromoImg').value = appConfig.images.promoImg || '';
-            document.getElementById('inputAdminLogo').value = appConfig.images.logo || ''; document.getElementById('inputAdminHeroBg').value = appConfig.images.heroBg || '';
-            document.getElementById('inputAdminQrCode').value = appConfig.images.qrCode || ''; document.getElementById('adminLogoSize').value = appConfig.layout.logoSize || 65;
-            
-            if (appConfig.imageSizes) {
-                document.getElementById('adminCatalogImgFit').value = appConfig.imageSizes.catalogFit || 'cover';
-                document.getElementById('adminCatalogImgHeight').value = appConfig.imageSizes.catalogHeight || 200;
-                document.getElementById('adminSliderImgFit').value = appConfig.imageSizes.sliderFit || 'cover';
-                document.getElementById('adminSliderImgHeight').value = appConfig.imageSizes.sliderHeight || 280;
-                document.getElementById('adminPromoImgFit').value = appConfig.imageSizes.promoFit || 'cover';
-                document.getElementById('adminLogoFit').value = appConfig.imageSizes.logoFit || 'contain';
-            }
-
-            for(let i=0; i<5; i++) {
-                if(document.getElementById(`adminSlider${i+1}`)) {
-                    document.getElementById(`adminSlider${i+1}`).value = sliderData[i]?.url || '';
-                    document.getElementById(`adminSliderDesc${i+1}`).value = sliderData[i]?.desc || '';
-                }
-            }
-
-            document.getElementById('adminHeroTitle').value = appTexts.heroTitle; document.getElementById('adminHeroDesc').value = appTexts.heroDesc;
-            document.getElementById('adminSliderTitle').value = appTexts.sliderTitle; document.getElementById('adminMenuTitle').value = appTexts.menuTitle;
-            document.getElementById('adminMapTitle').value = appTexts.mapTitle; document.getElementById('adminMapUrl').value = appTexts.mapIframeUrl;
-            document.getElementById('adminPromoDigitalBadge').value = appTexts.promoDigitalBadge; document.getElementById('adminPromoDigitalTitle').value = appTexts.promoDigitalTitle;
-            document.getElementById('adminPromoDigitalSub').value = appTexts.promoDigitalSub; document.getElementById('adminPromoDigitalCta').value = appTexts.promoDigitalCta;
-            document.getElementById('adminFooterAbout').value = appTexts.footerAbout; document.getElementById('adminFooterCopy').value = appTexts.footerCopy;
-
-            document.getElementById('adminLogoPass').value = sysSettings.security.logoPass || '';
-            document.getElementById('adminLogoExpiration').value = sysSettings.security.expiration || '';
-        }
-
-        function saveSecuritySettings() {
-            const newLogoPass = document.getElementById('adminLogoPass').value.trim();
-            const newExpiration = document.getElementById('adminLogoExpiration').value.trim();
-            
-            if (!newLogoPass) return alert("La clave del logo no puede estar vacía.");
-            
-            sysSettings.security.logoPass = newLogoPass;
-            sysSettings.security.expiration = newExpiration;
-            
-            localStorage.setItem('rentatrajesv2_sys', JSON.stringify(sysSettings));
-            syncCloud();
-            
-            alert("¡Seguridad actualizada correctamente! La sesión se cerrará para aplicar los cambios.");
-            logoutAdmin();
-        }
-
-        function saveBranchAdmin() {
-            const name = document.getElementById('adminBranchName').value.trim(); const address = document.getElementById('adminBranchAddr').value.trim();
-            const phone = document.getElementById('adminBranchPhone').value.trim(); const hours = document.getElementById('adminBranchHours').value.trim();
-            if (!name || !address || !phone) return alert("Nombre, dirección y teléfono son obligatorios.");
-            if (editingBranchIndex !== null) branchesData[editingBranchIndex] = { name, address, phone, hours }; else branchesData.push({ name, address, phone, hours });
-            localStorage.setItem('rentatrajesv2_branches', JSON.stringify(branchesData)); syncCloud();
-            renderAdminLists(); cancelEditBranchAdmin(); updateBranchInfo(); renderBranchSelector();
-        }
-
-        function deleteBranchAdmin(index) {
-            if(confirm("¿Eliminar esta sucursal del sistema?")) { branchesData.splice(index, 1); localStorage.setItem('rentatrajesv2_branches', JSON.stringify(branchesData)); syncCloud(); renderAdminLists(); updateBranchInfo(); renderBranchSelector(); }
-        }
-
-        function saveItemAdmin() {
-            const category = document.getElementById('adminItemCategory').value; const price = parseFloat(document.getElementById('adminItemPrice').value);
-            const name = document.getElementById('adminItemName').value.trim(); const desc = document.getElementById('adminItemDesc').value.trim();
-            if (!name || isNaN(price) || !desc) return alert("Completa todos los campos obligatorios.");
-            if (editingItemIndex !== null) menuData[editingItemIndex] = { name, price, category, desc, image: tempItemImage }; else menuData.push({ name, price, category, desc, image: tempItemImage });
-            localStorage.setItem('rentatrajesv2_menuData', JSON.stringify(menuData)); syncCloud();
-            renderAdminLists(); cancelEditAdmin(); filterCategory(currentActiveCategory);
-        }
-
-        function deleteSelectedItems() {
-            const checkboxes = document.querySelectorAll('.item-checkbox:checked');
-            if (checkboxes.length === 0) return alert("Selecciona al menos una prenda.");
-            if (confirm(`¿Eliminar ${checkboxes.length} prendas seleccionadas?`)) {
-                const indexes = Array.from(checkboxes).map(cb => parseInt(cb.value)).sort((a, b) => b - a);
-                indexes.forEach(index => { menuData.splice(index, 1); });
-                localStorage.setItem('rentatrajesv2_menuData', JSON.stringify(menuData)); syncCloud(); renderAdminLists(); filterCategory(currentActiveCategory);
-            }
-        }
-
-        function deleteItemAdmin(index) {
-            if (confirm("¿Eliminar prenda?")) { menuData.splice(index, 1); localStorage.setItem('rentatrajesv2_menuData', JSON.stringify(menuData)); syncCloud(); renderAdminLists(); filterCategory(currentActiveCategory); }
-        }
-
-        function saveCategoryAdmin() {
-            const key = document.getElementById('adminCatId').value.trim().toLowerCase().replace(/\s+/g, ''); const name = document.getElementById('adminCatName').value.trim();
-            if(!key || !name) return alert("Completa ID y Nombre");
-            categoryMap[key] = name; localStorage.setItem('rentatrajesv2_categories', JSON.stringify(categoryMap)); syncCloud();
-            renderAdminLists(); renderCategoryTabs(); document.getElementById('adminCatId').value = ''; document.getElementById('adminCatName').value = '';
-        }
-
-        function deleteCategoryAdmin(key) {
-            if(Object.keys(categoryMap).length <= 1) return alert("No puedes borrar la última categoría.");
-            if (confirm("¿Borrar esta categoría?")) { delete categoryMap[key]; localStorage.setItem('rentatrajesv2_categories', JSON.stringify(categoryMap)); syncCloud(); renderAdminLists(); renderCategoryTabs(); }
-        }
-
-        function savePromoAdmin() {
-            promoData = { tag: document.getElementById('adminPromoTag').value.trim(), title: document.getElementById('adminPromoTitle').value.trim(), price: document.getElementById('adminPromoPrice').value.trim(), desc: document.getElementById('adminPromoDesc').value.trim() };
-            localStorage.setItem('rentatrajesv2_promoData', JSON.stringify(promoData)); syncCloud(); renderPromoUI();
-        }
-
-        function saveImagesAdmin() {
-            sliderData = [];
-            for(let i=0; i<5; i++) {
-                if(document.getElementById(`adminSlider${i+1}`)) {
-                    sliderData.push({ url: document.getElementById(`adminSlider${i+1}`).value.trim(), desc: document.getElementById(`adminSliderDesc${i+1}`).value.trim() });
-                }
-            }
-            localStorage.setItem('rentatrajesv2_slider', JSON.stringify(sliderData)); syncCloud(); renderSlider(); setupSliderDots();
-        }
-
-        function saveTextsAdmin() {
-            appTexts = { heroTitle: document.getElementById('adminHeroTitle').value.trim(), heroDesc: document.getElementById('adminHeroDesc').value.trim(), sliderTitle: document.getElementById('adminSliderTitle').value.trim(), menuTitle: document.getElementById('adminMenuTitle').value.trim(), mapTitle: document.getElementById('adminMapTitle').value.trim(), mapIframeUrl: document.getElementById('adminMapUrl').value.trim(), promoDigitalBadge: document.getElementById('adminPromoDigitalBadge').value.trim(), promoDigitalTitle: document.getElementById('adminPromoDigitalTitle').value.trim(), promoDigitalSub: document.getElementById('adminPromoDigitalSub').value.trim(), promoDigitalCta: document.getElementById('adminPromoDigitalCta').value.trim(), footerAbout: document.getElementById('adminFooterAbout').value.trim(), footerCopy: document.getElementById('adminFooterCopy').value.trim() };
-            localStorage.setItem('rentatrajesv2_texts', JSON.stringify(appTexts)); syncCloud(); applyGlobalConfig();
-        }
-
-        function renderBranchSelector() {
-            const select = document.getElementById('branchSelect'); select.innerHTML = '';
-            if (branchesData.length <= 1) { select.style.display = 'none'; } else { select.style.display = 'inline-block'; }
-            branchesData.forEach((b, i) => { select.innerHTML += `<option value="${i}">${b.name}</option>`; });
-        }
-        function updateBranchInfo() {
-            if(branchesData.length === 0) return;
-            const select = document.getElementById('branchSelect'); const selectedIndex = select.value || 0; const b = branchesData[selectedIndex] || branchesData[0]; const cleanPhone = b.phone.replace('52', '');
-            document.getElementById('mapBranchTitle').innerText = b.name; document.getElementById('mapBranchAddress').innerHTML = `<i class="fa-solid fa-location-dot"></i> ${b.address}`;
-            document.getElementById('mapBranchHours').innerHTML = `<i class="fa-solid fa-clock"></i> ${b.hours}`; document.getElementById('mapBranchPhone').innerHTML = `<i class="fa-brands fa-whatsapp"></i> WhatsApp: ${cleanPhone}`;
-            document.getElementById('branchDetails').innerHTML = `<p><i class="fa-solid fa-location-dot"></i> ${b.address}</p><p><i class="fa-solid fa-clock"></i> ${b.hours}</p><p><i class="fa-brands fa-whatsapp"></i> ${cleanPhone}</p>`;
-            document.getElementById('domWaCtaText').innerText = cleanPhone; document.getElementById('domWaCta').href = `https://wa.me/${b.phone}`;
-        }
-        function renderSlider() {
-            const track = document.getElementById('sliderTrack'); track.innerHTML = '';
-            let validSlides = sliderData.filter(item => item && item.url && item.url.trim() !== '');
-            if (validSlides.length === 0) validSlides = [{url: "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600", desc: ""}];
-            validSlides.forEach((item, i) => { track.innerHTML += `<div class="slide-item"><img src="${item.url}"><div class="slide-caption">${(item.desc !== undefined && item.desc !== '') ? item.desc : `Colección ${i+1}`}</div></div>`; });
-        }
-        function renderCategoryTabs() {
-            const container = document.getElementById('categoryTabsContainer'); const select = document.getElementById('adminItemCategory');
-            container.innerHTML = ''; select.innerHTML = '';
-            for (const [key, name] of Object.entries(categoryMap)) {
-                const btn = document.createElement('button'); btn.className = `tab-btn ${key === currentActiveCategory ? 'active' : ''}`; btn.innerText = name; btn.onclick = () => filterCategory(key); container.appendChild(btn);
-                const option = document.createElement('option'); option.value = key; option.innerText = name; select.appendChild(option);
-            }
-        }
-        function filterCategory(category) {
-            currentActiveCategory = category;
-            const buttons = document.getElementById('categoryTabsContainer').children; for (let btn of buttons) { btn.classList.remove('active'); if (btn.innerText === categoryMap[category]) { btn.classList.add('active'); } }
-            const grid = document.getElementById('menuGrid'); grid.innerHTML = ''; const filtered = menuData.filter(item => item.category === category);
-            if (filtered.length === 0) { grid.innerHTML = `<p style="grid-column: 1/-1; text-align:center; color:#6B7280;">No hay prendas en esta categoría.</p>`; return; }
-            filtered.forEach(item => {
-                let imgHtml = item.image ? `<img src="${item.image}" class="item-image" alt="${item.name}">` : '';
-                grid.innerHTML += `<div class="menu-item"><div>${imgHtml}<div class="item-header"><h4 class="item-title">${item.name}</h4><span class="item-price">$${item.price}</span></div><p class="item-desc">${item.desc}</p></div><button class="add-to-cart-btn" onclick="addToCart('${item.name}', ${item.price})"><i class="fa-solid fa-plus"></i> Seleccionar</button></div>`;
-            });
-        }
-        function renderPromoUI() { document.getElementById('domPromoTag').innerHTML = `<i class="fa-solid fa-star"></i> ${promoData.tag}`; document.getElementById('domPromoTitle').innerText = promoData.title; document.getElementById('domPromoPrice').innerText = promoData.price; document.getElementById('domPromoDesc').innerText = promoData.desc; }
-        
-        function renderAdminLists() {
-            const menuList = document.getElementById('adminItemsList');
-            menuList.innerHTML = `<div style="padding: 10px; border-bottom: 1px solid #E5E7EB; display: flex; justify-content: space-between; align-items: center; background: #F9FAFB;"><label style="font-size: 13px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 8px;"><input type="checkbox" id="selectAllItems" onchange="toggleSelectAllItems(this)"> Seleccionar Todo</label><button class="admin-btn-delete" style="margin-top: 0; width: auto; padding: 6px 12px;" onclick="deleteSelectedItems()">Borrar Seleccionados</button></div>`;
-            menuData.forEach((item, index) => { menuList.innerHTML += `<div class="admin-list-item"><div style="display:flex; align-items:center; gap:8px;"><input type="checkbox" class="item-checkbox" value="${index}"><span><strong>[${categoryMap[item.category] || 'N/A'}]</strong> ${item.name} - $${item.price}</span></div><div class="admin-list-actions"><button class="admin-action-btn" style="color:var(--primary);" onclick="startEditItemAdmin(${index})"><i class="fa-solid fa-pencil"></i></button><button class="admin-action-btn" style="color:#EF4444;" onclick="deleteItemAdmin(${index})"><i class="fa-solid fa-trash"></i></button></div></div>`; });
-            const catList = document.getElementById('adminCategoriesList'); catList.innerHTML = '';
-            for (const [key, name] of Object.entries(categoryMap)) { catList.innerHTML += `<div class="admin-list-item"><span><strong>${key}:</strong> ${name}</span><button class="admin-action-btn" style="color:#EF4444;" onclick="deleteCategoryAdmin('${key}')"><i class="fa-solid fa-trash"></i></button></div></div>`; }
-            const branchList = document.getElementById('adminBranchesList'); branchList.innerHTML = '';
-            branchesData.forEach((branch, index) => { branchList.innerHTML += `<div class="admin-list-item"><span><strong>${branch.name}</strong></span><div class="admin-list-actions"><button class="admin-action-btn" style="color:var(--primary);" onclick="startEditBranchAdmin(${index})"><i class="fa-solid fa-pencil"></i></button><button class="admin-action-btn" style="color:#EF4444;" onclick="deleteBranchAdmin(${index})"><i class="fa-solid fa-trash"></i></button></div></div>`; });
-        }
-
-        function startEditBranchAdmin(index) { editingBranchIndex = index; const b = branchesData[index]; document.getElementById('adminBranchName').value = b.name; document.getElementById('adminBranchAddr').value = b.address; document.getElementById('adminBranchPhone').value = b.phone; document.getElementById('adminBranchHours').value = b.hours; document.getElementById('adminBranchFormTitle').innerText = "Editar Sucursal"; document.getElementById('adminBranchSubmitBtn').innerText = "Actualizar Sucursal"; document.getElementById('adminCancelBranchEditBtn').style.display = 'block'; }
-        function cancelEditBranchAdmin() { editingBranchIndex = null; document.getElementById('adminBranchName').value = ''; document.getElementById('adminBranchAddr').value = ''; document.getElementById('adminBranchPhone').value = ''; document.getElementById('adminBranchHours').value = ''; document.getElementById('adminBranchFormTitle').innerText = "Agregar Sucursal"; document.getElementById('adminBranchSubmitBtn').innerText = "Agregar Sucursal"; document.getElementById('adminCancelBranchEditBtn').style.display = 'none'; }
-        function toggleSelectAllItems(source) { const checkboxes = document.querySelectorAll('.item-checkbox'); checkboxes.forEach(cb => cb.checked = source.checked); }
-        function startEditItemAdmin(index) { editingItemIndex = index; const item = menuData[index]; document.getElementById('adminItemCategory').value = item.category; document.getElementById('adminItemPrice').value = item.price; document.getElementById('adminItemName').value = item.name; document.getElementById('adminItemDesc').value = item.desc; tempItemImage = item.image || ""; document.getElementById('adminItemImage').value = tempItemImage; if(tempItemImage) { document.getElementById('adminItemImagePreview').src = tempItemImage; document.getElementById('adminItemImagePreview').style.display = 'block'; } else { document.getElementById('adminItemImagePreview').style.display = 'none'; } document.getElementById('adminFormTitle').innerText = "Editar Prenda"; document.getElementById('adminSubmitBtn').innerText = "Actualizar Prenda"; document.getElementById('adminCancelEditBtn').style.display = 'block'; }
-        function cancelEditAdmin() { editingItemIndex = null; document.getElementById('adminItemPrice').value = ''; document.getElementById('adminItemName').value = ''; document.getElementById('adminItemDesc').value = ''; tempItemImage = ""; document.getElementById('adminItemImagePreview').style.display = 'none'; document.getElementById('adminItemImage').value = ''; document.getElementById('adminFormTitle').innerText = "Agregar una Prenda"; document.getElementById('adminSubmitBtn').innerText = "Agregar Prenda"; document.getElementById('adminCancelEditBtn').style.display = 'none'; }
-        function handleItemImageUrl(event) { const url = event.target.value.trim(); tempItemImage = url; const preview = document.getElementById('adminItemImagePreview'); if (url) { preview.src = tempItemImage; preview.style.display = 'block'; } else { preview.style.display = 'none'; } }
-
-        function toggleAddressFields(isDelivery) { const addressFields = document.getElementById('addressFields'); if (addressFields) { addressFields.style.display = isDelivery ? 'block' : 'none'; } }
-        function toggleCart() { document.getElementById('cartModal').classList.toggle('open'); document.getElementById('cartOverlay').classList.toggle('show'); }
-        function addToCart(name, price) { const i = cart.find(x => x.name === name); if (i) i.quantity++; else cart.push({ name, price, quantity: 1 }); updateCartUI(); }
-        function updateCartUI() { const body = document.getElementById('cartBody'); body.innerHTML = ''; let total = 0; let qty = 0; if (cart.length === 0) { body.innerHTML = '<div class="cart-empty-msg">Tu lista está vacía</div>'; document.getElementById('cartCheckoutDetails').style.display = 'none'; } else { cart.forEach(item => { total += item.price * item.quantity; qty += item.quantity; body.innerHTML += `<div class="cart-item-row"><div><h5>${item.name} (x${item.quantity})</h5><span>$${item.price*item.quantity}</span></div></div>`; }); document.getElementById('cartCheckoutDetails').style.display = 'block'; } document.getElementById('cartCount').innerText = qty; document.getElementById('cartTotal').innerText = `$${total}`; }
-        function sendWhatsAppOrder() {
-            if(cart.length===0) return alert("Agrega prendas a tu solicitud primero.");
-            const deliveryMethodRadio = document.querySelector('input[name="deliveryMethod"]:checked'); const deliveryMethod = deliveryMethodRadio ? deliveryMethodRadio.value : 'domicilio';
-            const clientName = document.getElementById('clientName').value.trim(); const clientPhone = document.getElementById('clientPhone').value.trim(); const clientAddress = document.getElementById('clientAddress') ? document.getElementById('clientAddress').value.trim() : '';
-            if(!clientName || !clientPhone) return alert("Por favor, ingresa tu nombre y teléfono.");
-            if(deliveryMethod === 'domicilio' && !clientAddress) return alert("Por favor, ingresa tu dirección completa para el envío.");
-            let t = `*NUEVA RESERVA - Renta de Trajes* 👔\n\n*Datos del Cliente:*\n👤 Nombre: ${clientName}\n📱 Teléfono: ${clientPhone}\n`;
-            if(deliveryMethod === 'domicilio') { t += `🛵 Método: *Envío a Domicilio*\n📍 Dirección: ${clientAddress}\n\n`; } else { t += `🥡 Método: *Probar y Recoger en Sucursal*\n\n`; }
-            t += `*Detalle de Prendas:*\n`; let total = 0; cart.forEach(i => { t += `▪️ ${i.quantity}x ${i.name} ($${i.price * i.quantity})\n`; total += (i.price * i.quantity); });
-            t += `\n*Total estimado:* $${total} MXN\n\n¡Quedo a la espera de confirmación para mi cita de ajuste!`;
-            let destPhone = "+52811080 9965"; if(branchesData.length > 0) { const select = document.getElementById('branchSelect'); const selectedIndex = select.value || 0; destPhone = branchesData[selectedIndex].phone; }
-            window.open(`https://wa.me/${destPhone}?text=${encodeURIComponent(t)}`);
-        }
-        function toggleChatWindow() { document.getElementById('chatbotWindow').classList.toggle('open'); }
-        function handleBotKeyPress(e) { if(e.key === 'Enter') sendToBot(); }
-        function sendToBot() { const input = document.getElementById('chatInputBox'); const msg = input.value.trim(); if(!msg) return; renderChatMsg(msg, 'user'); input.value = ''; setTimeout(() => { processIntelligentResponse(msg); }, 500); }
-        function renderChatMsg(text, sender) { const chatBox = document.getElementById('chatMsgBox'); chatBox.innerHTML += `<div class="chat-msg ${sender}">${text}</div>`; chatBox.scrollTop = chatBox.scrollHeight; }
-        function processIntelligentResponse(rawMsg) {
-            const msg = rawMsg.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""); let response = "Mmm, no estoy completamente seguro. Puedes preguntarme por precios, qué trajes tenemos, o pedirme directamente que agregue un modelo al catálogo (Ej: 'Agrega un Esmoquin Clásico').";
-            let foundProduct = menuData.find(p => { const prodName = p.name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""); return msg.includes(prodName) || (prodName.length > 5 && msg.includes(prodName.substring(0, 6))); });
-            let isAddIntent = msg.includes('rentar') || msg.includes('agregar') || msg.includes('quiero') || msg.includes('apartar') || msg.includes('reserva'); let isPriceIntent = msg.includes('precio') || msg.includes('cuesta') || msg.includes('valor');
-            let mainBranchAddr = branchesData.length > 0 ? branchesData[0].address : "Nuestra sucursal"; let mainBranchHours = branchesData.length > 0 ? branchesData[0].hours : "todos los días";
-            if (foundProduct && isAddIntent) { addToCart(foundProduct.name, foundProduct.price); response = `¡Excelente elección! He agregado 1x **${foundProduct.name}** a tu solicitud. 👔 ¿Te ayudo con algo más o prefieres confirmar tu apartado pulsando en el botón superior?`; } 
-            else if (foundProduct && isPriceIntent) { response = `El modelo **${foundProduct.name}** tiene un precio de renta de **$${foundProduct.price} MXN**. ¡Se ve espectacular! ¿Deseas apartarlo? (Dime "rentar ${foundProduct.name}")`; }
-            else if (foundProduct) { response = `Ese es un traje excelente. **${foundProduct.name}** se renta por $${foundProduct.price}. ${foundProduct.desc}. ¿Quieres seleccionarlo para tu evento?`; }
-            else if (msg.includes('hola') || msg.includes('buenas') || msg.includes('buenos dias')) { response = "¡Hola! 👋 Bienvenido a nuestro Atelier de Renta de Trajes. Soy tu asistente virtual. ¿Buscas alguna recomendación de etiqueta, ver el catálogo o cotizar un esmoquin?"; }
-            else if (msg.includes('menu') || msg.includes('trajes') || msg.includes('sacos') || msg.includes('tienen') || msg.includes('catalogo')) { let names = menuData.map(p => p.name).join(', '); response = `Contamos con opciones exclusivas como: ${names}. ¿Buscas algo de gala, ejecutivo o para bodas?`; }
-            else if (msg.includes('ubicacion') || msg.includes('donde') || msg.includes('sucursal') || msg.includes('tienda')) { response = `📍 Nuestra sucursal principal se encuentra en: ${mainBranchAddr}. ¡Ven a probarte tus prendas!`; }
-            else if (msg.includes('horario') || msg.includes('abren') || msg.includes('cierran')) { response = `🕒 Nuestros horarios de atención son: ${mainBranchHours}. ¡Te esperamos!`; }
-            else if (msg.includes('envio') || msg.includes('domicilio')) { response = "🛵 ¡Así es! Podemos enviar las prendas limpias y listas a tu domicilio, o si prefieres, agendar una cita para ajuste en tienda."; }
-            else if (msg.includes('pagar') || msg.includes('finalizar') || msg.includes('carrito')) { response = "Para completar tu reserva, abre tu panel de selección en la parte superior y llena los datos. Te abriré la ventana justo ahora."; setTimeout(() => { toggleCart(); }, 1000); }
-            renderChatMsg(response, 'bot');
-        }
-
-        function setupSliderDots() { const dotsContainer = document.getElementById('sliderDots'); dotsContainer.innerHTML = ''; const items = document.querySelectorAll('.slide-item'); if (items.length === 0) return; let maxSlides = items.length; if (window.innerWidth >= 768) { maxSlides = Math.max(1, items.length - 2); } for (let i = 0; i < maxSlides; i++) { dotsContainer.innerHTML += `<div class="slider-dot ${i === 0 ? 'active' : ''}" onclick="goToSlide(${i})"></div>`; } startSliderAnimation(); }
-        function updateSliderUI() { const track = document.getElementById('sliderTrack'); const items = document.querySelectorAll('.slide-item'); if (items.length === 0) return; const itemWidth = items[0].offsetWidth + 20; track.style.transform = `translateX(-${currentSlide * itemWidth}px)`; const dots = document.querySelectorAll('.slider-dot'); dots.forEach((dot, index) => { dot.classList.toggle('active', index === currentSlide); }); }
-        function moveSlider(d) { const items = document.querySelectorAll('.slide-item'); if (items.length === 0) return; let maxSlides = items.length - 1; if (window.innerWidth >= 768) { maxSlides = Math.max(0, items.length - 3); } currentSlide += d; if (currentSlide < 0) currentSlide = maxSlides; if (currentSlide > maxSlides) currentSlide = 0; updateSliderUI(); resetSliderAnimation(); }
-        function goToSlide(index) { currentSlide = index; updateSliderUI(); resetSliderAnimation(); }
-        function startSliderAnimation() { clearInterval(autoSlideTimer); autoSlideTimer = setInterval(() => { moveSlider(1); }, 3500); }
-        function resetSliderAnimation() { startSliderAnimation(); }
-        window.addEventListener('resize', () => { currentSlide = 0; setupSliderDots(); updateSliderUI(); });
-
-        async function uploadToImgbb(event) {
-            const file = event.target.files[0]; if (!file) return;
-            const statusText = document.getElementById('uploadStatus'); const urlInput = document.getElementById('generatedImageUrl'); const previewImg = document.getElementById('generatedImagePreview');
-            statusText.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Subiendo imagen a la nube...'; statusText.style.color = 'var(--primary)'; urlInput.value = ""; previewImg.style.display = "none";
-            const apiKey = 'a9970f51791bb86a7eaf71086058d21d'; const formData = new FormData(); formData.append("image", file);
-            try { const response = await fetch(`https://api.imgbb.com/1/upload?key=${apiKey}`, { method: 'POST', body: formData }); const data = await response.json(); if (data.success) { const imageUrl = data.data.url; urlInput.value = imageUrl; previewImg.src = imageUrl; previewImg.style.display = "inline-block"; statusText.innerHTML = '<i class="fa-solid fa-circle-check"></i> ¡Imagen generada con éxito!'; statusText.style.color = 'var(--success)'; } else { statusText.innerText = "Error al procesar la imagen."; statusText.style.color = '#EF4444'; } } catch (error) { statusText.innerText = "Error de conexión. Verifica tu internet."; statusText.style.color = '#EF4444'; console.error(error); }
-        }
-        function copyGeneratedUrl() { const urlInput = document.getElementById('generatedImageUrl'); if(!urlInput.value) return alert("Primero sube una imagen para generar la URL."); urlInput.select(); document.execCommand("copy"); alert("¡URL copiada! Ahora puedes pegarla en cualquier campo de 'Imagen' del panel."); }
-
-        function recargarYcerrarSesion() {
-            localStorage.removeItem('oud_admin_logged_logo');
-            localStorage.removeItem('oud_admin_logged_qr');
-            localStorage.removeItem('oud_admin_logged');
-            location.reload();
-        }
-
-        initApp();
-    </script>
 </body>
 </html>
